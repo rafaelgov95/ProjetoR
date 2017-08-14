@@ -56,17 +56,18 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="post-preview">
-            <a href="post">
+          <div class="post-preview" *ngFor="let post of Posts">
+            <a href={{post.Id}}>
               <h2 class="post-title">
-                Como utilizar o CLION como IDE para programar o seu Micro-Controlador.
+                  {{post.Titulo}}
+               
               </h2>
               <h3 class="post-subtitle">
-                Chega de ficar adivinhando as funções das bibliotecas de seu micro-controlor.
+                  {{post.Texto}}
               </h3>
             </a>
             <p class="post-meta">Postado por
-              <a href="#">Rafael Viana</a>
+              <a href="#">{{post.Autor}}</a>
               on Agosto 14, 2017</p>
           </div>
           <hr>

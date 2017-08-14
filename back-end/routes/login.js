@@ -40,46 +40,19 @@ module.exports = (req, res) => {
                 expiresIn: 60 * 60 * 24 //o token irá expirar em 24 horas
             });
             user.accessToken = token;
-            // http.post() {}
-            //Aqui iremos retornar a informação do token via JSON:
-            // res.set({
-            //     // 'Content-Type': 'text/plain',
-            //     // 'Content-Length': '123',
-            //     'x-access-token': token
-            // })
+         
             console.log(token);
-            // res.send('Seja Bem-Vindo a API:');
             let getData = () => {
 
                 return 'qualquer que seja o seu resultado aqui';
             }
 
-            // app.get('/data', (req, res) => {
-            // res.send(getData());
-            // });
-            // etID(function(err, user) {
-            // res.render(path.join(__dirname + '/../views/logadox.html'), { ex: user });
-            // });
-            // res.sendFile(function(err, data) { path.join(__dirname + '/../views/logado.html') });
-
-
-            // res.json({
-            //     email: email,
-            //     toke: token
-            // });
-            // next();
-
             var expires = moment().add(7, 'days').valueOf();
-            // var token = jwt.encode({
-            //     iss: user.id,
-            //     exp: expires
-            // }, segredo);
-            // //4
+    
             res.json({
                 user: user.toJSON()
             });
-            // console.log(res.json)
-            // next();
+           
         });
     });
 };

@@ -1,26 +1,26 @@
 {
-    "name": "servidor",
-    "version": "0.0.0",
-    "private": true,
-    "scripts": {
-        "start": "nodemon ./bin/www"
-    },
-    "dependencies": {
-        "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.27",
-        "bcrypt": "^1.0.2",
-        "bcrypt-nodejs": "0.0.3",
-        "body-parser": "~1.17.1",
-        "cookie-parser": "~1.4.3",
-        "debug": "~2.6.3",
-        "ejs": "^2.5.6",
-        "express": "~4.15.2",
-        "jsonwebtoken": "^7.4.1",
-        "jwt-simple": "^0.5.1",
-        "mongoose": "^4.11.1",
-        "morgan": "^1.8.2",
-        "mpromise": "^0.5.5",
-        "ng2-charts": "^1.6.0",
-        "pug": "^2.0.0-rc.2",
-        "serve-favicon": "~2.4.2"
-    }
+  "name": "servidor",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.27",
+    "bcrypt": "^1.0.2",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "~1.17.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "ejs": "^2.5.6",
+    "express": "~4.15.2",
+    "jsonwebtoken": "^7.4.1",
+    "jwt-simple": "^0.5.1",
+    "mongoose": "^4.11.1",
+    "morgan": "^1.8.2",
+    "mpromise": "^0.5.5",
+    "ng2-charts": "^1.6.0",
+    "pug": "^2.0.0-rc.2",
+    "serve-favicon": "~2.4.2"
+  }
 }

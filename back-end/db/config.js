@@ -1,6 +1,6 @@
 'use strict'
 const mongoose = require('mongoose');
-const dbURI = 'mongodb://localhost:27017/vouestacionar';
+const dbURI = 'mongodb://localhost:27017/coximrobotica';
 mongoose.Promise = global.Promise;
 mongoose.connect(dbURI, {
     useMongoClient: true,

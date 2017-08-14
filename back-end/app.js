@@ -7,14 +7,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongodb = require('mongoose');
-var estacionamento = require('./routes/crud-estacionamento/api')('schema-estacionamento', 'estacionamentos')
-var funcionario = require('./routes/crud-funcionario/api')('schema-funcionario', 'funcionarios')
-var usuario = require('./routes/crud-usuario/api')('schema-usuario', 'usuarios')
-var gerencia = require('./routes/crud-gerente/api')('schema-gerente', 'gerentes')
-var login = require('./routes/login')
 var router = express.Router();
-
 var app = express();
+
+var posts = require('./routes/crud-generico/api')('schema-posts', 'posts')
+var valida_login = require('./routes/login')
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
@@ -36,12 +34,10 @@ app.use(function (req, res, next) {
     next();
 });
 
-    app.post('/api/autentica', login) // autentica
-    app.use('/api/usuario', usuario)
+    // app.post('/api/autentica', login) // autentica
+    app.use('/api/posts', posts)
     // app.use(require('./routes/verifica-toke')) // verifica o token 
-    app.use('/api/funcioario', funcionario)
-    app.use('/api/estacionamento', estacionamento);
-    app.use('/api/gerente', gerencia);
+
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
