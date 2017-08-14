@@ -13,18 +13,10 @@ var app = express();
 var posts = require('./routes/crud-generico/api')('schema-posts', 'posts')
 var valida_login = require('./routes/login')
 
-
-app.set('views', path.join(__dirname, 'views'));
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'ejs')
-
-
-// app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, path.join('views', 'dist'))));
-// app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -39,12 +31,8 @@ app.use(function (req, res, next) {
     // app.use(require('./routes/verifica-toke')) // verifica o token 
 
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
-
 app.use(function (req, res) {
-    res.status(404).sendFile(path.join(__dirname, 'index.html'))
+    res.status(404).send('Serviço não existe')
 });
 app.use(function (err, req, res, next) {
     // set locals, only providing error in development
