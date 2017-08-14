@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class BlogComponent implements OnInit {
 
   constructor() { }
-
+  LOGO = {'background': 'url(./assets/img/logo.jpg) center center / cover no-repeat'}
   ngOnInit() {
   }
 
