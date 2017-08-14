@@ -1,0 +1,44 @@
+// shared css for the login and signup page
+@import "../login/login.component.scss";
+.message {
+    position: fixed;
+    margin-top: -380px;
+    margin-left: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+}
+h1{
+    margin: 0px;
+}
+
+h2{
+    margin: 0px;
+}
+
+img{
+    width: 50%;
+    margin: 30px 0 30px 0;
+}
+
+.login{
+    margin-top: 2%;
+    // margin: auto 0;
+    padding: 50px;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 2%;
+}
+
+.error-message {
+    background-color: #e74c3c;
+    text-shadow: 2px 2px #c0392b;
+    box-shadow: 2px 2px #c3c3c3;
+    color: #ffffff;
+}
+
+.success-message {
+    background-color: #1abc9c;
+    text-shadow: 2px 2px #16a085;
+    box-shadow: 2px 2px #c3c3c3;
+    color: #ffffff;
+}

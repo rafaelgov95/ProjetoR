@@ -1,0 +1,71 @@
+<div class="login-page">
+
+    <div class="col-md-4 push-md-4 login">
+
+        <form [formGroup]="UserForm" (ngSubmit)="register()" [hidden]=sucesso>
+            <h1>Registre-se</h1>
+            <div class="form-content">
+                <div class="form-group">
+
+                    <input type="text" id="nome" class="form-control input-underline input-lg" formControlName="nome" placeholder="Nome" name="nome"
+                        required>
+
+                    <div *ngIf="formErrors.nome" class="alert alert-danger">
+                        {{ formErrors.nome }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <input type="text" id="email" class="form-control input-underline input-lg" formControlName="email" placeholder="Email" name="email"
+                        required>
+
+                    <!--<div *ngIf="formErrors.email" class="alert alert-danger">
+                            {{ formErrors.email }}
+                        </div>-->
+                </div>
+                <div class="form-group">
+
+                    <input type="password" id="senha" class="form-control input-underline input-lg" formControlName="senha" placeholder="Senha"
+                        name="senha" required>
+
+                    <!--<div *ngIf="formErrors.senha" class="alert alert-danger">
+                            {{ formErrors.senha }}
+                        </div>-->
+                </div>
+                <div class="form-group">
+
+                    <!--<input type="password" id="nome" class="form-control input-underline input-lg" formControlName="confirmaSenha" placeholder="Confirmar Senha" name="confirmaSenha" required>-->
+
+                    <!--<div *ngIf="formErrors.confirmaSenha" class="alert alert-danger">
+                            {{ formErrors.confirmaSenha }}
+                        </div>-->
+                </div>
+
+            </div>
+            <a class="btn rounded-btn" (click)="register()"> Registrar </a>&nbsp;
+            <a class="btn rounded-btn" [routerLink]="['/login']"> Cancelar</a>
+        </form>
+        <div *ngIf="erro" id="error" class="message error-message">
+            Senha ou login invalidos
+        </div>
+
+        <div *ngIf="sucesso" class="container">
+            <div class="row text-center">
+                <div class="col-md-12 col-sm-offset-6">
+                    <br><br>
+                    <h2 style="color:#2ECC71">{{user.nome}} seu registro foi efetuado com sucesso</h2>
+                    <img src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-check-icon.png">
+                    <!-- <h3>{{user.nome}}</h3> -->
+                    <!-- <p style="font-size:20px;color:#fff;">Logue-se agora mesmo!</p> -->
+                    <a href="" class="btn btn-success" style="background-color:#2ECC71">Inicie sua jornada agora mesmo</a>
+                    <br><br>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

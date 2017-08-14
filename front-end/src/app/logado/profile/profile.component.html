@@ -1,0 +1,34 @@
+<app-page-header-opcoes [heading]="'Perfil'" [icon]="'fa-table'"></app-page-header-opcoes>
+
+<div ng-include="'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'">
+</div>
+<div ng-include="'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'">
+</div>
+
+<div class="panel panel-default profile-area">
+    <div class="panel-heading">
+    </div>
+    <div class="panel-body">
+        <div>
+            <h1>Bem-vindo</h1>
+            <h3 class="nickname"><small>Você está no painel de controle {{ profile.nome }}</small></h3>
+            <div class="imagem">
+            </div>
+
+        </div>
+        <hr>
+        <h4>Envie sua sugestão a nossa equipe de desenvolvimento</h4>
+        <textarea id="output" class="textArea" id=""></textarea>
+        <br>
+        
+        <button type="button" class="btn btn-info btn-lg enviarFeedback">Enviar Sugestão</button>
+
+        <hr>
+        <a>Email cadastrado: <b>{{profile.email}}</b></a>
+        <BR>
+        <a> Esta conta foi criada em: <b> {{profile.criada_em}} </b></a>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,265 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+
+
+/* 
+    Created on : 12/05/2017, 10:58:55
+    Author     : Higor
+*/
+
+
+/*Pra usar a cor branco*/
+
+h1,
+input[type=submit] {
+    color: black;
+}
+
+
+/*Botão de Entrar*/
+
+input[type=submit] {
+    color: white;
+    cursor: pointer;
+    padding: 1px 20px;
+}
+
+#btnVerde,
+.btnCriar {
+    background: #57D07F;
+    font-size: 15px;
+    width: 70px;
+    /*padding: 100px;*/
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    border: none;
+    box-shadow: inset 0 2px 3px 0 rgba(255, 255, 255, .3), inset 0 -3px 6px 0 rgba(0, 0, 0, .2), 0 3px 2px 0 rgba(0, 0, 0, .2);
+    /*background-image: linear-gradient(to bottom, #57D07F, #66ff66 130%);*/
+}
+
+#btnVerde:hover {
+    background: #66ff33;
+}
+
+.btnLaranja {
+    background: #FFC871;
+    /*background-image: url("Imagem/local.png");*/
+    font-size: 18px;
+    /*height:auto;*/
+    color: black;
+    text-align: center;
+    border-radius: 4px;
+    border: none;
+    box-shadow: inset 0 2px 3px 0 rgba(255, 255, 255, .3), inset 0 -3px 6px 0 rgba(0, 0, 0, .2), 0 3px 2px 0 rgba(0, 0, 0, .2);
+    /*background-image: linear-gradient(to bottom, #57D07F, #66ff66 130%);*/
+}
+
+.btnLaranja:hover {
+    background: #ff9900;
+}
+
+body {
+    margin: 0px;
+    /*padding-top: 30px;*/
+    border: none;
+    background: #F7F6F3;
+}
+
+header img {
+    /*float:left;*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -27px;
+    margin-left: -19px;
+}
+
+#site {
+    /*width: 1200px;*/
+    /*margin: auto;*/
+    /*padding: 10px 50px;*/
+    /*backgroun d: #e2e2e2;*/
+    font-family: helvetica;
+    margin: 0px;
+    border: none;
+    padding: 0px;
+}
+
+#meuForm {}
+
+#menuTopo {
+    padding: 15px 20px;
+    /*margin: 110px;*/
+    /*display: block;*/
+    /*position: fixed;*/
+    /*top:0;*/
+    /*left:0;*/
+    /*width: 1300px;*/
+    /*background-image: linear-gradient(to bottom,#535858,white 1000%);*/
+    background-image: linear-gradient(to right, #11C3EB, #57D07F 130%);
+    /*background: #535858;*/
+    /*color: #000099*/
+    /*background: #*/
+    /*padding: 10px 100px 10px 10px;*/
+    /*text-align: right;*/
+    /*text-align: center;*/
+    /*margin-right: 10%;*/
+}
+
+#barraTopo {
+    /*background-image: linear-gradient(to right, #11C3EB, #57D07F 130%);*/
+    /*float: right;*/
+    background-image: linear-gradient(to bottom, #535858, white 1000%);
+    text-align: center;
+    /*margin-top: 30px;*/
+    /*display: block;*/
+    padding-top: 70px;
+    padding-bottom: 5px;
+    /*border: 45px;*/
+    /*background:#11C3EB;*/
+    /*opacity: 0.5;*/
+}
+
+#barraTopo a {
+    text-decoration: none;
+    color: white;
+    opacity: 0.95;
+    /*border-right: 1px solid white;*/
+    /*position: relative;*/
+    /*top: 0%;*/
+    /*left: 50%;*/
+}
+
+#barraTopo li {
+    position: relative;
+    /*left: 10%;*/
+    padding: 15px;
+}
+
+#menuTopo a {
+    color: white;
+    font-family: monospace;
+    font-size: 20px;
+    text-decoration: none;
+    /*left:50%;*/
+    /*padding: 20px ;*/
+}
+
+header li {
+    list-style-type: none;
+    display: inline;
+}
+
+header ul li a:hover {
+    text-decoration: underline;
+}
+
+#formu {
+    float: right;
+    /*position: right;*/
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+    display: inline;
+}
+
+#formu input {
+    padding: 3px;
+    border-radius: 9px;
+}
+
+#conteudo {
+    padding: 50px 200px;
+    line-height: 180%;
+    font-size: 20px;
+}
+
+.classCadastro form input {
+    /*display:block!important;*/
+    font-size: 18px;
+    width: 50%;
+    padding: 10px!important;
+    margin: 5px!important;
+}
+
+.classCadastro form {
+    text-align: center;
+    /*    left: 50%;*/
+    /* padding: 10px;*/
+}
+
+.classOquee {
+    text-align: center;
+    /*width: 400px;*/
+    /*float:left;*/
+    /*border: thick  groove  rgb(255,0,255);*/
+    /*border-bottom: thin double black;*/
+    /*border-top: thin double black;*/
+    /*padding-top: 30px;*/
+    padding-bottom: 30px;
+}
+
+.classCadastro {
+    text-align: center;
+    /*display: inline;*/
+    padding-top: 30px;
+    /*text-align: center;*/
+    /*border-bottom: thin double black;*/
+    padding-bottom: 30px;
+    /*padding: 30px 30px 30px 100px;*/
+    /*padding: 5px 500px;*/
+    /*left:50%;*/
+    /*float:contour;*/
+    /*border: thick  groove  rgb(255,0,255);*/
+    /*width: 500px;*/
+    /*background: #D7D7D9;*/
+    /*width: 400px;*/
+    margin: 0 auto;
+    /*float:right;*/
+}
+
+.formCadastro input {
+    /*padding: 20px;*/
+    margin-top: 8px;
+    /*width: 150px;*/
+    /*height: 30px;*/
+    /*font-size: 18px;*/
+    /*float: left;*/
+    /*width: 300px;*/
+    /*height: 300px;*/
+    /*display: inline;*/
+}
+
+.textoCadastro {
+    /*text-align: center;*/
+    /*display: inline;*/
+    /*float: right;*/
+    /*width: 300px;*/
+    /*height: 300px;*/
+}
+
+.classLinksCorpo {
+    font-size: 23px;
+    font-weight: bold;
+    /*padding-left: 50%;*/
+    /*left:50%!important;*/
+}
+
+.classSobre {
+    display: inline-block;
+    /*margin-top: 30px;*/
+    padding-top: 100px;
+    /*left:50%;*/
+    text-align: center;
+    width: 100%;
+}
+
+.cadastro {
+    padding-top: 100px;
+    padding-bottom: 30px;
+    text-align: justify;
+}
