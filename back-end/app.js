@@ -27,7 +27,7 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
 });
-//   app.use('/api/login', login) // autentica
+  app.use('/api/autentica', valida_login) // autentica
 
   app.use('/api/posts', posts) // postagens do blog
   

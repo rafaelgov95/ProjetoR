@@ -1,3 +1,4 @@
+import { HeaderComponent } from './header/header.component';
 import { HtmleditorComponent } from './htmleditor/htmleditor.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { LoginModule } from './../login/login.module';
@@ -27,8 +28,8 @@ import { ServicePost } from './../shared/services/posts/ServicePost';
     FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()
 
   ],
-  declarations: [BlogComponent,PostsComponent,HtmleditorComponent],
+  declarations: [BlogComponent,PostsComponent,HtmleditorComponent,HeaderComponent],
   providers:[ServicePost,AlertService],
-  exports:[BlogComponent,LoginModule,HtmleditorComponent]
+  exports:[BlogComponent,LoginModule,HtmleditorComponent,HeaderComponent]
 })
 export class BlogModule { }

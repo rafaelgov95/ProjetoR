@@ -37,10 +37,6 @@ import {
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-    NgbCarouselModule,
-    NgbAlertModule
-} from '@ng-bootstrap/ng-bootstrap';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 
@@ -55,7 +51,6 @@ import {
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 
 import { StatModule } from '../../shared';
-import { AgmCoreModule } from '@agm/core';
 import { PageHeaderModule } from './../../shared';
 // import { ListaModule } from './components/lista/lista.module';
 import { HttpModule } from '@angular/http';
@@ -66,14 +61,11 @@ import { CdkTableModule } from '@angular/cdk';
         CommonModule,
         ReactiveFormsModule,
         FormsModule,
-        NgbCarouselModule.forRoot(),
-        NgbAlertModule.forRoot(),
         DashboardRoutingModule,
         StatModule,
         PageHeaderModule,
         MdNativeDateModule,
         MdAutocompleteModule,
-        
         CdkTableModule,
         MdButtonModule,
         MdButtonToggleModule,

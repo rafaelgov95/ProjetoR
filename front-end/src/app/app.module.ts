@@ -1,5 +1,4 @@
 import { CdkTableModule } from '@angular/cdk';
-import { MaterializeModule } from 'angular2-materialize';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 import {
@@ -46,7 +45,6 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './shared';
-import { AgmCoreModule } from '@agm/core';
 import { AppComponent } from './app.component';
 
 @NgModule({
