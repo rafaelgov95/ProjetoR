@@ -1,7 +1,9 @@
 import { CdkTableModule } from '@angular/cdk';
 import { MaterializeModule } from 'angular2-materialize';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 import {
+  
   MdAutocompleteModule,
   MdButtonModule,
   MdButtonToggleModule,
@@ -46,12 +48,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './shared';
 import { AgmCoreModule } from '@agm/core';
 import { AppComponent } from './app.component';
-import { HtmleditorComponent } from './htmleditor/htmleditor.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HtmleditorComponent],
+    AppComponent],
   imports: [
     HttpModule,
     AppRoutingModule,
@@ -92,8 +92,9 @@ import { HtmleditorComponent } from './htmleditor/htmleditor.component';
     MdTableModule,
     MdTabsModule,
     MdToolbarModule,
-    MdTooltipModule
+    MdTooltipModule,
   ], exports: [
+    
     CdkTableModule,
     MdAutocompleteModule,
     MdButtonModule,
