@@ -2,6 +2,7 @@ const mg = require('mongoose')
 var bcrypt = require('bcrypt-nodejs');
 
 const UsuarioSchema = new mg.Schema({
+    nome:String,
     email: String,
     senha: String,
     accessToken:  String ,

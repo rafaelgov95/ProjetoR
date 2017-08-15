@@ -10,6 +10,7 @@ module.exports = (Schema, Banco) => {
     const Actions = {}
     Actions.listar = (req, res) => {
             const query = req.query;
+            console.log(query)
             model.find(query, (err, data) => {
                 callback(err, data, res)
             });

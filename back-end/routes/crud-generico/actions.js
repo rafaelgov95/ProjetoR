@@ -10,15 +10,20 @@ module.exports = (Schema, Banco) => {
     const Actions = {}
     Actions.listar = (req, res) => {
             const query = req.query;
+           
             model.find(query, (err, data) => {
                 callback(err, data, res)
+                console.log(data)
             });
         },
         Actions.buscar = (req, res) => {
             const query = req.query;
+             console.log(query)
             model.findOne(query, (err, data) => {
                 callback(err, data, res)
+                // console.log("Saida:",data.body)
             });
+
         },
         Actions.save = (req, res) => {
             const body = req.body;
@@ -29,6 +34,7 @@ module.exports = (Schema, Banco) => {
         },
         Actions.remove = (req, res) => {
             const body = req.body
+            console.log(body)
             model.remove(body, (err, data) => {
                 callback(err, data, res)
             });

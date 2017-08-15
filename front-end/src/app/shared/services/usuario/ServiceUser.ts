@@ -1,4 +1,5 @@
-import { User } from './../../models/user';
+import { Usuario } from './../../models/usuario';
+Usuario
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
@@ -14,7 +15,7 @@ export class UserService {
         return this.http.get('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
     }
 
-    create(user: User) {
+    create(user: Usuario) {
         return this.http.post('http://localhost:3000/api/usuario/save', user, this.jwt()).map((response: Response) => response.json());
     }
 

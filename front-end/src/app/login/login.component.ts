@@ -1,4 +1,4 @@
-import { User } from './../shared/models/user';
+import { Usuario } from './../shared/models/usuario';
 import { Component, OnInit } from '@angular/core';
 import {
   FormGroup, FormBuilder
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   alert = true;
   returnUrl: string;
   UserForm: FormGroup;
-  user: User;
+  user: Usuario;
   submitted = false;
 
   constructor(
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     private alertService: AlertService
 
   ) {
-    this.user = new User('', '', '');
+    this.user = new Usuario('', '', '');
   }
 
   ngOnInit(): void {
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     this.loginService.logout();
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'dashboard';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'logado';
   }
 
   buildForm(): void {

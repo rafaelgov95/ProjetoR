@@ -1,18 +1,12 @@
 <div class="login-page">
     <div [hidden]="submitted">
         <div class="col-md-4 push-md-4 login">
-
-            <h1>EstAqui</h1>
-
+            <h1>Coxim Róbotica Painel de Controle</h1>
             <div [hidden]="alert" class="alert alert-danger alert-dismissable">
                 <strong>Erro</strong> Email ou Senha incorretos.
-
             </div>
             <form [formGroup]="UserForm" (ngSubmit)="login()">
-
                 <div class="form-group">
-
-
                     <input type="text" id="email" class="form-control input-underline input-lg" formControlName="email" placeholder="Email" name="email"
                         required>
 
@@ -28,9 +22,10 @@
                         {{ formErrors.senha }}
                     </div>
                 </div>
-                <a class="btn rounded-btn" [routerLink]="['/dashboard']" (click)="login()"> Entrar </a> &nbsp;
+                <a class="btn rounded-btn" [routerLink]="['/logado']" (click)="login()"> Entrar </a> &nbsp;
                 <a class="btn rounded-btn" [routerLink]="['/signup']">Registrar</a>
             </form>
         </div>
     </div>
 </div>
+Snippets

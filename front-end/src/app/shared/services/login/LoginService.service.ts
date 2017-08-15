@@ -1,7 +1,7 @@
+import { Login } from './../../models/login';
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
-import { User } from '../../models/user';
 
 @Injectable()
 export class LoginService {
@@ -25,9 +25,9 @@ export class LoginService {
             });
     }
 
-    create(user: User) {
+    create(user: Login) {
         console.log("AQUI PORA", user);
-        return this.http.post('http://localhost:3000/api/usuario/save', user).map((response: Response) => response.json());
+        return this.http.post('http://localhost:3000/api/login/save', user).map((response: Response) => response.json());
     }
 
 

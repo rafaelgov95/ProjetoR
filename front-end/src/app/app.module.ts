@@ -42,15 +42,16 @@ import { Http, HttpModule } from '@angular/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 // import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { AutocompleteComponent } from './logado/dashboard/components/autocomplete/autocomplete.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './shared';
 import { AgmCoreModule } from '@agm/core';
 import { AppComponent } from './app.component';
+import { HtmleditorComponent } from './htmleditor/htmleditor.component';
 
 @NgModule({
   declarations: [
-    AppComponent],
+    AppComponent,
+    HtmleditorComponent],
   imports: [
     HttpModule,
     AppRoutingModule,

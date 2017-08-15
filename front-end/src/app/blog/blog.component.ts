@@ -1,3 +1,7 @@
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs/Rx';
+import { Post } from './../shared/models/post';
+import { ServicePost } from './../shared/services/posts/ServicePost';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,16 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogComponent implements OnInit {
 
-  constructor() { }
-  LOGO = {'background': 'url(./assets/img/logo.jpg) center center / cover no-repeat'}
-  Posts = []
+  Posts: Post[];
+  inscricao: Subscription;
+  constructor(private servicePost: ServicePost, private router:Router) {
+  
 
- 
-  ngOnInit() {
-    this.Posts.push({Id:'post',Titulo:'Como utilizar o CLION como IDE para programar o seu Micro-Controlador',Texto:'Chega de ficar adivinhando as funções das bibliotecas de seu micro-controlor.',Autor:'Rafael Viana'})
-    this.Posts.push({Id:'post',Titulo:'Como utilizar o CLION como IDE para programar o seu Micro-Controlador',Texto:'Chega de ficar adivinhando as funções das bibliotecas de seu micro-controlor.',Autor:'Rafael Viana'})
   }
+  LOGO = { 'background': 'url(./assets/img/logo.jpg) center center / cover no-repeat' }
 
+
+  ngOnInit() {
+    this.inscricao = this.servicePost.getAll().subscribe(data => {this.Posts = data ; this.servicePost.EmitterDelivery.emit(this.Posts)}, erro => console.log('Erro'));
+    
+  }
+  ngOnDestroy() {
+    this.inscricao.unsubscribe();
+  }
 
 
 }

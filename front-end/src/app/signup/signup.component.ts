@@ -1,4 +1,4 @@
-import { User } from './../shared/models/user';
+import { Login } from './../shared/models/login';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertService } from  '../shared/services/alert.service'
@@ -13,7 +13,7 @@ import {LoginService } from '../shared/services/login/LoginService.service'
     styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-      user:User;
+      user:Login;
       confirmaSenha=''; 
       message:any;
       UserForm: FormGroup;
@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit {
         private router: Router,
         private loginService: LoginService,
         private alertService: AlertService) { 
-          this.user = new User('', '', '');
+         
         }
 
     ngOnInit(){

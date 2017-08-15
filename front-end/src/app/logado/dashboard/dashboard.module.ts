@@ -1,7 +1,4 @@
 import { ListaComponent } from './components/lista/lista.component';
-import { MapsComponent } from './components/maps/maps.component';
-import { MapsModule } from './components/maps/maps.module';
-import { EstacionamentoService } from './../../shared/services/estacionamento/EstacionamentoService.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
     MdAutocompleteModule,
@@ -38,7 +35,6 @@ import {
 } from '@angular/material';
 
 
-import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -74,8 +70,6 @@ import { CdkTableModule } from '@angular/cdk';
         NgbAlertModule.forRoot(),
         DashboardRoutingModule,
         StatModule,
-        // ListaModule,
-        MapsModule,
         PageHeaderModule,
         MdNativeDateModule,
         MdAutocompleteModule,
@@ -112,17 +106,15 @@ import { CdkTableModule } from '@angular/cdk';
         MdToolbarModule,
         MdTooltipModule
     ],providers:[
-        EstacionamentoService
+        
         ],
     declarations: [
         DashboardComponent,
         TimelineComponent,
         NotificationComponent,
-        AutocompleteComponent,
         ListaComponent
 
     ], exports: [
-        MapsModule,
         DashboardComponent,
         MdNativeDateModule,
         MdAutocompleteModule,
