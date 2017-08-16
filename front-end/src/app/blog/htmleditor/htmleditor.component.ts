@@ -12,13 +12,18 @@ export class HtmleditorComponent implements OnInit {
   post: Post;
   HtmlEditor: FormGroup;
   constructor(private fb: FormBuilder,
-              private servicePost :ServicePost) {
+    private servicePost: ServicePost) {
+
     this.post = new Post('', '', '', '');
+    if (sessionStorage.getItem('currentUser')) {
+
+      this.post.autor = JSON.parse(sessionStorage.getItem('currentUser'))['nome']
+    }
   }
 
   onSubmit(evento) {
     console.log(evento)
-    this.servicePost.create(evento).subscribe(data =>console.log("Sucesso"),err => console.log("Erro"))
+    this.servicePost.create(evento).subscribe(data => console.log("Sucesso"), err => console.log("Erro"))
   }
 
   ngOnInit() {
@@ -62,7 +67,7 @@ export class HtmleditorComponent implements OnInit {
   formErrors = {
     'titulo': '',
     'resumo': '',
-    'autor': '',
+    // 'autor': '',
     'texto': ''
     // ,
     // 'senha': ''
@@ -80,9 +85,9 @@ export class HtmleditorComponent implements OnInit {
     'resumo': {
       'required': 'Resumo requerido.'
     },
-    'autor': {
-      'required': 'Autor requerido.'
-    },
+    // 'autor': {
+    //   'required': 'Autor requerido.'
+    // },
     'texto': {
       'required': 'Texto Requerido'
     }

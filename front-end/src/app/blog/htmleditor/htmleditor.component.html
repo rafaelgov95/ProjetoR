@@ -1,28 +1,30 @@
  {{HtmlEditor.formModel}}
 
 <form [formGroup]="HtmlEditor" (ngSubmit)="onSubmit(HtmlEditor.value)">
-<div class="form-group" [ngClass]="{' has-success':!formErrors.titulo,'has-danger':formErrors.titulo}">
-    <label class="form-control-label" for="inputSuccess">Titulo</label>
-    <input type="text" class="form-control " formControlName="titulo" id="inputSuccess" [ngClass]="{'form-control-success':!formErrors.titulo,'form-control-danger':formErrors.titulo}">
-    <div *ngIf="formErrors.titulo" class="alert alert-danger">
-        {{ formErrors.titulo }}
+    <div class="form-group" [ngClass]="{' has-success':!formErrors.titulo,'has-danger':formErrors.titulo}">
+        <label class="form-control-label" for="inputSuccess">Titulo</label>
+        <input type="text" class="form-control " formControlName="titulo" id="inputSuccess" [ngClass]="{'form-control-success':!formErrors.titulo,'form-control-danger':formErrors.titulo}">
+        <div *ngIf="formErrors.titulo" class="alert alert-danger">
+            {{ formErrors.titulo }}
+        </div>
     </div>
-</div>
-<div class="form-group" [ngClass]="{' has-success':!formErrors.resumo,'has-danger':formErrors.resumo}">
-    <label class="form-control-label" for="inputSuccess">Resumo</label>
-    <input type="text" class="form-control " formControlName="resumo" id="inputSuccess" [ngClass]="{'form-control-success':!formErrors.resumo,'form-control-danger':formErrors.resumo}">
-    <div *ngIf="formErrors.resumo" class="alert alert-danger">
-        {{ formErrors.resumo}}
+    <div class="form-group" [ngClass]="{' has-success':!formErrors.resumo,'has-danger':formErrors.resumo}">
+        <label class="form-control-label" for="inputSuccess">Resumo</label>
+        <input type="text" class="form-control " formControlName="resumo" id="inputSuccess" [ngClass]="{'form-control-success':!formErrors.resumo,'form-control-danger':formErrors.resumo}">
+        <div *ngIf="formErrors.resumo" class="alert alert-danger">
+            {{ formErrors.resumo}}
+        </div>
     </div>
-</div>
-<div class="form-group" [ngClass]="{' has-success':!formErrors.autor,'has-danger':formErrors.autor}">
-    <label class="form-control-label" for="inputSuccess">Autor</label>
-    <input type="text" class="form-control " formControlName="autor" id="inputSuccess" [ngClass]="{'form-control-success':!formErrors.autor,'form-control-danger':formErrors.autor}">
-    <div *ngIf="formErrors.autor" class="alert alert-danger">
-        {{ formErrors.autor}}
-    </div>
-</div>
+    <!-- <div class="form-group" [ngClass]="{' has-success':!formErrors.autor,'has-danger':formErrors.autor}">
+        <label class="form-control-label" for="inputSuccess">Autor</label>
+        <input type="text" class="form-control " formControlName="autor" id="inputSuccess" [ngClass]="{'form-control-success':!formErrors.autor,'form-control-danger':formErrors.autor}">
+        <div *ngIf="formErrors.autor" class="alert alert-danger">
+            {{ formErrors.autor}}
+        </div>
+    </div> -->
     <textarea [froalaEditor] formControlName="texto" [(froalaModel)]="HtmlEditor.texto"></textarea>
-    <div [froalaView]="HtmlEditor.texto"></div>
-<button type="submit" class="btn btn-secondary btn-lg btn-block">Block level button</button>
+
+    <button type="submit" class="btn btn-secondary btn-lg btn-block">Block level button</button>
+    <br><br><br> 
+    <div [froalaView]="HtmlEditor.texto" *ngIf="HtmlEditor.texto!=undefined"></div>
 </form>

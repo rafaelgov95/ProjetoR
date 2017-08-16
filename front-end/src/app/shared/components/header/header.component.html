@@ -1,86 +1,91 @@
-<div class="pos-f-t fixed-top header">
-    <nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md">
-        <button class="navbar-toggler navbar-toggler-right" (click)="toggleSidebar()">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="javascript:void(0)">EstAqui</a>
-        <div class="collapse navbar-collapse">
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-            </form>
-            <ul class="navbar-nav ml-auto mt-2 mt-md-0">
-                <li class="nav-item hidden-lg-down">
-                </li> &nbsp;
-                <li class="nav-item">
-                </li> &nbsp;
-                <li class="nav-item dropdown" ngbDropdown>
-                    <!-- <div class="dropdown"> -->
-                    <!--<a class="nav-link" href="javascript:void(0)" ngbDropdownToggle>
-                        <i class="fa fa-envelope"></i> <b class="caret"></b><span class="sr-only">(current)</span>
-                    </a>-->
-                    <!--<ul class="dropdown-menu dropdown-menu-right messages">
-                        <li class="media">
-                            <img class="d-flex align-self-center mr-3" src="http://i.huffpost.com/gadgets/slideshows/461162/slide_461162_6224974_sq50.jpg" alt="Generic placeholder image">
-                            <div class="media-body">
-                                <h5 class="mt-0 mb-1">{{nome}}</h5>
-                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                <p class="last"> Lorem ipsum dolor sit amet, consectetur...</p>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <img class="d-flex align-self-center mr-3" src="http://i.huffpost.com/gadgets/slideshows/461162/slide_461162_6224974_sq50.jpg" alt="Generic placeholder image">
-                            <div class="media-body">
-                                <h5 class="mt-0 mb-1">John Smith</h5>
-                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                <p class="last"> Lorem ipsum dolor sit amet, consectetur...</p>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <img class="d-flex align-self-center mr-3" src="http://i.huffpost.com/gadgets/slideshows/461162/slide_461162_6224974_sq50.jpg" alt="Generic placeholder image">
-                            <div class="media-body">
-                                <h5 class="mt-0 mb-1">John Smith</h5>
-                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                <p class="last"> Lorem ipsum dolor sit amet, consectetur...</p>
-                            </div>
-                        </li>
-                    </ul>-->
-                </li>
-                <!--<li class="nav-item dropdown" ngbDropdown>
-                    <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
-                        <i class="fa fa-bell"></i> <b class="caret"></b><span class="sr-only">(current)</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-right">
-                        <a href="javascript:void(0)" class="dropdown-item">Pending Task <span class="badge badge-info">6</span></a>
-                        <a href="javascript:void(0)" class="dropdown-item">In queue <span class="badge badge-info"> 13</span></a>
-                        <a href="javascript:void(0)" class="dropdown-item">Mail <span class="badge badge-info"> 45</span></a>
-                        <li class="dropdown-divider"></li>
-                        <a href="javascript:void(0)" class="dropdown-item">View All</a>
-                    </ul>
-                </li>-->
-                <!-- <li class="nav-item dropdown" ngbDropdown>
-                    <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
-                        <i class="fa fa-language"></i> {{ 'idioma' | translate }} <b class="caret"></b>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="javascript:void(0)" (click)="changeLang('en')">English</a>
-                        <a class="dropdown-item" href="javascript:void(0)" (click)="changeLang('fr')">French</a>
-                        <a class="dropdown-item" href="javascript:void(0)" (click)="changeLang('ur')">Urdu</a>
-                    </div>
-                </li> -->
-                <li class="nav-item dropdown" ngbDropdown>
+<div id="alinhamento">
+  <nav class="navbar navbar-default navbar-inverse" role="navigation">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <a class="navbar-brand" href="">Coxim Robótica</a>
+      </div>
 
-                    <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
-                         <i class="fa fa-user"></i>Rafael<b class="caret"></b> 
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" routerLink="/profile"><i class="fa fa-fw fa-user"></i> Perfil</a>
-                        <!--<a class="dropdown-item" routerLink="/configuracoes"><i class="fa fa-fw fa-envelope"></i> Inbox</a>-->
-                        <!-- <a class="dropdown-item" routerLink="/configuracoes"><i class="fa fa-fw fa-gear"></i> Configurações</a> -->
-                        <a class="dropdown-item" [routerLink]="['/login']" (click)="onLoggedout()"><i class="fa fa-fw fa-power-off"></i>Sair</a>
-                    </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-                </li>
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="O que você procura?">
+          </div>
+          <button type="submit" class="btn btn-default">Buscar</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right" >
+          <!-- <li><p class="navbar-text">Already have an account?</p></li> -->
+          <li class="dropdown" *ngIf="logado==false">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{nome}} <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Adicionar</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a (click)='logout()'>logout</a></li>
             </ul>
-        </div>
-    </nav>
+          </li>
+          <li class="dropdown" *ngIf="logado==true">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+            <ul id="login-dp" class="dropdown-menu">
+              <li>
+                <div class="row">
+                  <div class="col-md-12">
+                    <p>Login </p>
+                    <div class="social-buttons">
+                      <!-- <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
+									<a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a> -->
+                    </div>
+                    <!-- or  -->
+
+                    <div [hidden]="alert" class="alert alert-danger alert-dismissable">
+                      <strong>Erro</strong> Email ou Senha incorretos.
+                    </div>
+                    <form [formGroup]="UserForm" (ngSubmit)="login()" role="form" action="login" accept-charset="UTF-8" id="login-nav">
+                      <div class="form-group">
+                        <label class="sr-only" for="exampleInputEmail2">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Email " formControlName="email" placeholder="Email" name="email"
+                          required>
+                        <div *ngIf="formErrors.email" class="alert alert-danger">
+                          {{ formErrors.email }}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="sr-only" for="exampleInputPassword2">Senha</label>
+                        <input type="password" class="form-control" id="senha" placeholder="Password" formControlName="senha" placeholder="Senha"
+                          name="senha" required>
+                        <div *ngIf="formErrors.senha" class="alert alert-danger">
+                          {{ formErrors.senha }}
+                        </div>
+                        <div class="help-block text-right"><a href="">Esqueceu sua senha ?</a></div>
+                      </div>
+                      <div class="form-group">
+                        <button type="submit" (click)="login()" class="btn btn-primary btn-block">Logar</button>
+                      </div>
+                      <div class="checkbox">
+                        <label>
+											 <input type="checkbox"> lembrar-me
+											 </label>
+                      </div>
+                    </form>
+                  </div>
+                  <!-- <div class="bottom text-center">
+								New here ? <a href="#"><b>Join Us</b></a>
+							</div> -->
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
 </div>

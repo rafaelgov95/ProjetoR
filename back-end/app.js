@@ -11,7 +11,8 @@ var router = express.Router();
 var app = express();
 
 
-// const login = require('./routes/crud-generico/api')('schema-login', 'login')
+const login =  require('./routes/crud-login/api')('schema-login', 'login')
+// const posts = require('./routes/crud-generico/api')('schema-posts', 'posts')
 const posts = require('./routes/crud-generico/api')('schema-posts', 'posts')
 
 const valida_login = require('./routes/login')
@@ -27,9 +28,10 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
 });
-  app.use('/api/autentica', valida_login) // autentica
 
-  app.use('/api/posts', posts) // postagens do blog
+app.use('/api/login',login )
+app.post('/api/autentica', valida_login) // autentica
+app.use('/api/posts',posts) // postagens do blog
   
     // app.use(require('./routes/verifica-toke')) // verifica o token 
 

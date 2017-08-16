@@ -1,6 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { TranslateModule } from '@ngx-translate/core';
 
 import { HeaderComponent } from './header.component';
 
@@ -10,10 +8,6 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ 
-        RouterTestingModule,
-        TranslateModule.forRoot()
-      ],
       declarations: [ HeaderComponent ]
     })
     .compileComponents();
@@ -25,7 +19,7 @@ describe('HeaderComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should be created', () => {
     expect(component).toBeTruthy();
   });
 });

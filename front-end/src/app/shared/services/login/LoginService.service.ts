@@ -19,7 +19,7 @@ export class LoginService {
                 let body = response.json();
                 if (body) {
                     if (body.user && body.user.accessToken) {
-                        localStorage.setItem('currentUser', JSON.stringify(body.user));
+                        sessionStorage.setItem('currentUser', JSON.stringify(body.user));
                     }
                 }
             });

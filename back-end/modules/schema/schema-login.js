@@ -2,19 +2,19 @@ const mg = require('mongoose')
 var bcrypt = require('bcrypt-nodejs');
 
 const UsuarioSchema = new mg.Schema({
-    nome:String,
-    email: String,
-    senha: String,
-    accessToken:  String ,
+    nome: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
+    senha: { type: String, required: true, unique: true },
+    accessToken: String,
 })
 
 
-UsuarioSchema.pre('save', function(next) {
+UsuarioSchema.pre('save', function (next) {
     var user = this;
     if (!user.isModified('senha')) return next();
-    bcrypt.genSalt(5, function(err, salt) {
+    bcrypt.genSalt(5, function (err, salt) {
         if (err) return next(err);
-        bcrypt.hash(user.senha, salt, null, function(err, hash) {
+        bcrypt.hash(user.senha, salt, null, function (err, hash) {
             if (err) return next(err);
             user.senha = hash;
             next();
@@ -22,8 +22,8 @@ UsuarioSchema.pre('save', function(next) {
     });
 });
 //3
-UsuarioSchema.methods.verificaSenha = function(senha, next) {
-    bcrypt.compare(senha, this.senha, function(err, isMatch) {
+UsuarioSchema.methods.verificaSenha = function (senha, next) {
+    bcrypt.compare(senha, this.senha, function (err, isMatch) {
         if (err) return next(err);
         next(isMatch);
     });

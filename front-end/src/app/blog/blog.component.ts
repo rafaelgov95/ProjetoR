@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs/Rx';
 import { Post } from './../shared/models/post';
 import { ServicePost } from './../shared/services/posts/ServicePost';
 import { Component, OnInit } from '@angular/core';
-
+import { DatePipe } from '@angular/common';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-blog',
@@ -11,12 +11,16 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./blog.component.scss']
 })
 export class BlogComponent implements OnInit {
-
+  adicionarPost = false;
   Posts: Post[];
   inscricao: Subscription;
   constructor(private servicePost: ServicePost, private router: Router) {
 
-
+    if (sessionStorage.getItem('currentUser')) {
+      this.adicionarPost = false;
+    } else {
+      this.adicionarPost = true;
+    }
   }
   LOGO = { 'background': 'url(./assets/img/logo.jpg) center center / cover no-repeat' }
 
@@ -27,6 +31,8 @@ export class BlogComponent implements OnInit {
   ngOnDestroy() {
     this.inscricao.unsubscribe();
   }
-
+  recebeValidaçãoHTMLEditor(evento) {
+    this.adicionarPost = evento;
+  }
 
 }

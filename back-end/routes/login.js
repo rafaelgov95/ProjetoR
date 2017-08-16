@@ -2,7 +2,7 @@ var jwt = require('jsonwebtoken')
 var moment = require('moment')
 var mongoose = require('mongoose')
 var segredo = 'seusegredodetoken'
-var Usuario = require('../modules/genericModel')(require('../modules/schema/schema-usuario'), 'usuarios');
+var Usuario = require('../modules/genericModel')(require('../modules/schema/schema-login'), 'login');
 var express = require('express')
 var app = express();
 var path = require('path');
@@ -10,9 +10,6 @@ var http = require('http')
 
 app.set('superNode-auth', 'node-auth');
 
-// app.set('views', path.join(__dirname, 'views'));
-// app.engine('html', require('ejs').renderFile);
-// app.set('view engine', 'ejs')
 
 module.exports = (req, res) => {
     var email = req.body.email || '';

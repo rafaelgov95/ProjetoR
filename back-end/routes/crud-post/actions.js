@@ -4,8 +4,8 @@ module.exports = (Schema, Banco) => {
 
     const model = require('../../modules/genericModel')(Schema, Banco)
     const callback = (err, data, res) => {
-        if (err) return console.log('erro', err)
-        return res.json(data);
+        if (err) return res.status(500)
+        return res.status(200).json(data);
     }
     const Actions = {}
     Actions.listar = (req, res) => {
@@ -24,6 +24,7 @@ module.exports = (Schema, Banco) => {
         Actions.save = (req, res) => {
             const body = req.body;
             const modelo = new model(body);
+            console.log("chegando")
             modelo.save((err, data) => {
                 callback(err, data, res)
             });
