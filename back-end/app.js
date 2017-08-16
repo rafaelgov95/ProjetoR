@@ -24,17 +24,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Authorization, x-access-token');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
 });
 
 app.use('/api/login',login )
 app.post('/api/autentica', valida_login) // autentica
+app.use(require('./routes/verifica-toke'))
 app.use('/api/posts',posts) // postagens do blog
-  
-    // app.use(require('./routes/verifica-toke')) // verifica o token 
 
+
+
+
+   
 
 app.use(function (req, res) {
     res.status(404).send('Serviço não existe')

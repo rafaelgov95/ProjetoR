@@ -23,7 +23,7 @@
       <div class="post-preview" *ngFor="let post of Posts ">
         <a [routerLink]="['post',post._id]">
           <h2 class="post-title">
-            {{post.titulo}}
+            {{post.titulo}}  
 
           </h2>
           <h3 class="post-subtitle">
@@ -31,7 +31,8 @@
           </h3>
         </a>
         <p class="post-meta">Postado por
-          <a href="#">{{post.autor}}</a> em {{post.criada_em | date:'medium' }}</p>
+          <a href="#">{{post.autor}}</a> em {{post.criada_em | date:'medium' }}  </p>
+          <button class="btn btn-danger" (click)="Remove(post)" *ngIf="adicionarPost == false">Excluir</button>
       </div>
       <hr>
       <!-- Pager -->

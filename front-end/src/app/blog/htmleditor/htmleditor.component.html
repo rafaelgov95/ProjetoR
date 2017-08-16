@@ -24,7 +24,9 @@
     </div> -->
     <textarea [froalaEditor] formControlName="texto" [(froalaModel)]="HtmlEditor.texto"></textarea>
 
-    <button type="submit" class="btn btn-secondary btn-lg btn-block">Block level button</button>
+    <button type="submit" class="btn btn-secondary btn-lg btn-block">Enviar Mensagem</button>
+    <button type="submit" class="btn btn-secondary btn-lg btn-block" (click)="esconder=!esconder" *ngIf="esconder==true && HtmlEditor.texto!=undefined" >Esconder Mensagem</button>
+    <button type="submit" class="btn btn-secondary btn-lg btn-block" (click)="esconder=!esconder" *ngIf="esconder==false && HtmlEditor.texto!=undefined && HtmlEditor.texto!=''">Mostrar Mensagem</button>
     <br><br><br> 
-    <div [froalaView]="HtmlEditor.texto" *ngIf="HtmlEditor.texto!=undefined"></div>
+    <div [froalaView]="HtmlEditor.texto" *ngIf="HtmlEditor.texto!=undefined && esconder!=false"></div>
 </form>

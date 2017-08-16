@@ -4,7 +4,7 @@ var express = require('express')
 var app = express();
 app.set('superNode-auth', 'node-auth');
 module.exports = function (req, res, next) {
-
+ console.log("entro aqui")
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
     if (token) {
@@ -24,6 +24,8 @@ module.exports = function (req, res, next) {
         return res.status(403).send({
             success: false,
             message: 'Não há token.'
+         
         });
+           console.log( 'Não há token.')
     }
 };

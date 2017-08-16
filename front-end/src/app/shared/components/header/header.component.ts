@@ -15,7 +15,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 })
 export class HeaderComponent implements OnInit {
-  @Output() enviar = new EventEmitter();
   emailRegex = '^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$';
   alert = true;
   returnUrl: string;
@@ -28,16 +27,13 @@ export class HeaderComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-
     private loginService: LoginService,
-    private alertService: AlertService
+    // private alertService: AlertService
 
   ) {
     this.user = new Login('', '', '');
     if (sessionStorage.getItem('currentUser')) {
-
       this.nome = JSON.parse(sessionStorage.getItem('currentUser'))['nome']
-      this.enviar.emit(true);
       this.logado = false;
     } else {
       this.logado = true;
@@ -47,7 +43,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
 
     this.buildForm();
-    this.alertService.getMessage();
+    // this.alertService.getMessage();
     // reset login status
     this.loginService.logout();
 
@@ -112,13 +108,12 @@ export class HeaderComponent implements OnInit {
     this.loginService.logar(this.UserForm.get('email').value, this.UserForm.get('senha').value)
       .subscribe(
       data => {
+        console.log('Logado com Sucesso')
         window.location.reload();
-
-
       },
       error => {
-        console.log('Erro');
-        this.alertService.error(error);
+        console.log('Login Erro');
+        // this.alertService.error(error);
         this.alert = false;
         setTimeout(() => this.alert = true, 10000);
 
@@ -126,8 +121,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-
     sessionStorage.clear();
-     window.location.reload();
+    window.location.reload();
   }
 }

@@ -9,43 +9,42 @@ import { Post } from './../../models/post';
 
 @Injectable()
 export class ServicePost {
-  EmitterDelivery = new EventEmitter();
-
+  emitterDelivery = new EventEmitter();
+  headers: Headers;
+  options: RequestOptions;
+  token: string;
   private Url = 'http://localhost:3000/api/posts';
 
   constructor(private http: Http) {
 
     console.log("Servico de Posts")
-  }
 
+    this.headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+
+    if (sessionStorage.getItem('currentUser')) {
+      this.token = JSON.parse(sessionStorage.getItem('currentUser'))['accessToken'];
+      this.headers.append('x-access-token', this.token)  
+    }
+    
+    this.options = new RequestOptions({ headers: this.headers });
+  }
 
   getAll(): Observable<Post[]> {
     return this.http.get(this.Url + '/listar').map((response: Response) => response.json());
   }
   getPost(id: string): Observable<Post> {
     console.log(id)
-    return this.http.get(this.Url + '/buscar?_id='+ id ).map((response: Response) => response.json());
+    return this.http.get(this.Url + '/buscar?_id=' + id, this.options).map((response: Response) => response.json());
   }
   create(user: Post): Observable<Post[]> {
     return this.http.post(this.Url + '/save', user).map((response: Response) => response.json());
   }
 
-  // getEstacionamentos() {
-  //   return this.http.get(this.testUrl)
-  //     .map(this.extractData)
-  //     .catch(this.handleError);
-  // }
-
-  // getAllEstacionamentos(): Observable<Estacionamento[]> {
-
-  //   return this.http.get(this.testUrl).map((response: Response) => response.json());
-
-  // }
-
-  remove(est: any): Observable<Post> {
-
+  remove(post: Post): Observable<Post> {
     return this.http
-      .delete('/api/posts/remove', est)
+      .delete(this.Url + "/remove/?" + "_id" + "=" + post._id, this.options)
       .map((response: Response) => response.json());
   }
 

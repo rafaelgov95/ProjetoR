@@ -11,12 +11,12 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 export class HtmleditorComponent implements OnInit {
   post: Post;
   HtmlEditor: FormGroup;
+  esconder=false;
   constructor(private fb: FormBuilder,
     private servicePost: ServicePost) {
 
     this.post = new Post('', '', '', '');
     if (sessionStorage.getItem('currentUser')) {
-
       this.post.autor = JSON.parse(sessionStorage.getItem('currentUser'))['nome']
     }
   }

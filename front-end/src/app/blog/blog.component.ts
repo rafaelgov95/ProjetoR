@@ -26,13 +26,15 @@ export class BlogComponent implements OnInit {
 
 
   ngOnInit() {
-    this.inscricao = this.servicePost.getAll().subscribe(data => { this.Posts = data; this.servicePost.EmitterDelivery.emit(this.Posts) }, erro => console.log('Erro'));
+    this.inscricao = this.servicePost.getAll().subscribe(data => this.Posts = data, erro => console.log('Erro'));
+    this.servicePost.emitterDelivery.subscribe(post => this.Posts.push(post))
   }
   ngOnDestroy() {
     this.inscricao.unsubscribe();
   }
-  recebeValidaçãoHTMLEditor(evento) {
-    this.adicionarPost = evento;
+  Remove(post: Post) {
+    this.servicePost.remove(post)
+      .subscribe(data => {this.Posts.splice(this.Posts.indexOf(post), 1), console.log(post)}, err => console.log(err));
   }
 
 }
