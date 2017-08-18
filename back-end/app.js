@@ -24,12 +24,11 @@ app.use(function (req, res, next) {
     next();
 });
 const login = require('./routes/crud-login/api')('schema-login', 'login')
-const posts = require('./routes/crud-generico/api')('schema-posts', 'posts')
+const posts = require('./routes/crud-post/api')('schema-posts', 'posts')
 const valida_login = require('./routes/new-login')
 
 app.use('/api/login', login)
 app.use('/api/autentica', valida_login) // autentica
-// app.use(require('./routes/verifica-toke'))
 app.use('/api/posts', posts) // postagens do blog
 
 app.use(function (req, res) {
