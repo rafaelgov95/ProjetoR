@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Login } from './../../models/login';
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
@@ -5,34 +6,39 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 @Injectable()
 export class LoginService {
-    constructor(private http: Http) { }
+    headers = new Headers();
+    constructor(private http: Http) {
+        this.headers.append('Content-Type', 'application/json');
+    }
 
-    logar(email: string, senha: string) {
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        let urlSearchParams = new URLSearchParams();
-       urlSearchParams.append('email', email);
-        urlSearchParams.append('senha', senha);
-        let body = urlSearchParams.toString()
-        return this.http.post('http://localhost:3000/api/autentica', body, { headers: headers })
-            .map((response: Response) => {
-                let body = response.json();
-                if (body) {
-                    if (body.user && body.user.accessToken) {
-                        sessionStorage.setItem('currentUser', JSON.stringify(body.user));
+
+    logar(email: string, senha: string): Observable<any> {
+        let body = JSON.stringify({ email: email, senha: senha })
+
+        return this.http.post('http://localhost:3000/api/autentica', body, { headers: this.headers })
+            .map((res: Response) => {
+                if (res.status < 200 || res.status >= 300) {
+                    throw new Error('Requesição Falhou' + res.status);
+                }
+                else {
+                    let body = res.json();
+                    console.log("Body", body)
+                    if (body) {
+                        if (body.user && body.user.accessToken) {
+                            localStorage.setItem('currentUser', JSON.stringify(body.user));
+                        }
                     }
+
                 }
             });
     }
 
     create(user: Login) {
-        console.log("AQUI PORA", user);
         return this.http.post('http://localhost:3000/api/login/save', user).map((response: Response) => response.json());
     }
 
 
     logout() {
-        // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
+        sessionStorage.removeItem('currentUser');
     }
 }

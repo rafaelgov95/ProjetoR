@@ -11,7 +11,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 export class HtmleditorComponent implements OnInit {
   post: Post;
   HtmlEditor: FormGroup;
-  esconder=false;
+  esconder = false;
   constructor(private fb: FormBuilder,
     private servicePost: ServicePost) {
 
@@ -22,8 +22,12 @@ export class HtmleditorComponent implements OnInit {
   }
 
   onSubmit(evento) {
-    console.log(evento)
+
     this.servicePost.create(evento).subscribe(data => console.log("Sucesso"), err => console.log("Erro"))
+    this.servicePost.emitterDelivery.emit(evento)
+    this.HtmlEditor.reset()
+
+
   }
 
   ngOnInit() {
@@ -32,10 +36,9 @@ export class HtmleditorComponent implements OnInit {
   }
   buildForm(): void {
     this.HtmlEditor = this.fb.group({
-      'titulo': [this.post.titulo, [Validators.required]],
-      'resumo': [this.post.resumo, [Validators.required]],
-      'autor': [this.post.autor, [Validators.required]],
-      'texto': [this.post.texto, [Validators.required]],
+      'titulo': [this.post.titulo, [Validators.required, Validators.minLength, Validators.maxLength]],
+      'resumo': [this.post.resumo, [Validators.required, Validators.minLength, Validators.maxLength]],
+      'texto': [this.post.texto, [Validators.required, Validators.minLength]],
     });
 
 
@@ -49,9 +52,9 @@ export class HtmleditorComponent implements OnInit {
   onValueChanged(data?: any) {
     if (!this.HtmlEditor) { return; }
     const form = this.HtmlEditor;
-
+    console.log(form)
     for (const field in this.formErrors) {
-      // clear previous error message (if any)
+      // console.log(field)
       this.formErrors[field] = '';
       const control = form.get(field);
 
@@ -67,29 +70,24 @@ export class HtmleditorComponent implements OnInit {
   formErrors = {
     'titulo': '',
     'resumo': '',
-    // 'autor': '',
     'texto': ''
-    // ,
-    // 'senha': ''
   };
 
   validationMessages = {
     'titulo': {
-      'required': 'Titulo de usuário requerido.'
-      // 'minlength': 'Nome tem que possuir mais de 4 caracteres',
-      // 'pattern': 'Email esta incorreto'
-      // ,
-      // 'maxlength': 'Name cannot be more than 24 characters long.'
+      'required': 'Titulo de usuário requerido.',
+      'minlength': 'Titulo tem que possuir mais de 6 caracteres.',
+      'maxlength': 'Titulo tem que possuir menos de 120 caracteres.'
     }
     ,
     'resumo': {
-      'required': 'Resumo requerido.'
+      'required': 'Resumo requerido.',
+      'minlength': 'Resumo tem que possuir mais de 20 caracteres',
+      'maxlength': 'Resumo tem que possuir menos de 120 caracteres.'
     },
-    // 'autor': {
-    //   'required': 'Autor requerido.'
-    // },
     'texto': {
-      'required': 'Texto Requerido'
+      'required': 'Texto Requerido',
+      'minlength': 'Texto tem que possuir mais de 120 caracteres'
     }
   };
 

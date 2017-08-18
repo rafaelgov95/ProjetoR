@@ -20,8 +20,8 @@ module.exports = (Schema, Banco) => {
         });
     },
         Actions.buscar = (req, res) => {
-            const query = req.query;
-            console.log(query)
+            const query = req.search;
+            console.log(query, "   :   ", req.query)
             model.findOne(query, (err, data) => {
                 callback(err, data, res)
             });
@@ -29,7 +29,7 @@ module.exports = (Schema, Banco) => {
         },
         Actions.save = (req, res) => {
             const body = req.body;
-            app.use(require('../verifica-toke'))
+            // app.use(require('../verifica-toke'))
             console.log("Enviado")
             const modelo = new model(body);
             modelo.save((err, data) => {
@@ -37,15 +37,16 @@ module.exports = (Schema, Banco) => {
             });
         },
         Actions.remove = (req, res) => {
-            app.use(require('../verifica-toke'))
-            model.remove(re.query, (err, data) => {
+            require('../verifica-toke')(req,res)
+
+            model.remove(req.query, (err, data) => {
                 callback(err, data, res)
             });
         },
         Actions.update = (req, res) => {
             const body = req.body
             const query = req.query
-            app.use(require('../verifica-toke'))
+            // app.use(require('../verifica-toke'))
             model.update(query, body, (err, data) => {
                 callback(err, data, res)
             });

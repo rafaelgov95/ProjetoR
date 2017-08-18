@@ -27,13 +27,13 @@ export class HeaderComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private loginService: LoginService,
-    // private alertService: AlertService
+    private loginService: LoginService
 
   ) {
     this.user = new Login('', '', '');
-    if (sessionStorage.getItem('currentUser')) {
-      this.nome = JSON.parse(sessionStorage.getItem('currentUser'))['nome']
+    if (localStorage.getItem('currentUser')) {
+      this.nome = JSON.parse(localStorage.getItem('currentUser'))['nome']
+      console.log(this.nome)
       this.logado = false;
     } else {
       this.logado = true;
@@ -104,16 +104,13 @@ export class HeaderComponent implements OnInit {
 
 
   login() {
-
     this.loginService.logar(this.UserForm.get('email').value, this.UserForm.get('senha').value)
       .subscribe(
       data => {
-        console.log('Logado com Sucesso')
-        window.location.reload();
+        window.location.reload();     
       },
       error => {
         console.log('Login Erro');
-        // this.alertService.error(error);
         this.alert = false;
         setTimeout(() => this.alert = true, 10000);
 
@@ -121,7 +118,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    sessionStorage.clear();
+    localStorage.clear();
     window.location.reload();
   }
 }

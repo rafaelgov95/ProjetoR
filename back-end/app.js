@@ -10,34 +10,27 @@ var mongodb = require('mongoose');
 var router = express.Router();
 var app = express();
 
-
-const login =  require('./routes/crud-login/api')('schema-login', 'login')
-// const posts = require('./routes/crud-generico/api')('schema-posts', 'posts')
-const posts = require('./routes/crud-generico/api')('schema-posts', 'posts')
-
-const valida_login = require('./routes/login')
+// view engine setup
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Authorization, x-access-token');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Request-Width, Content-Type, Accept, x-access-token ');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
 });
+const login = require('./routes/crud-login/api')('schema-login', 'login')
+const posts = require('./routes/crud-generico/api')('schema-posts', 'posts')
+const valida_login = require('./routes/new-login')
 
-app.use('/api/login',login )
-app.post('/api/autentica', valida_login) // autentica
-app.use(require('./routes/verifica-toke'))
-app.use('/api/posts',posts) // postagens do blog
-
-
-
-
-   
+app.use('/api/login', login)
+app.use('/api/autentica', valida_login) // autentica
+// app.use(require('./routes/verifica-toke'))
+app.use('/api/posts', posts) // postagens do blog
 
 app.use(function (req, res) {
     res.status(404).send('Serviço não existe')

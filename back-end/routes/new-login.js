@@ -8,10 +8,12 @@ var app = express();
 var path = require('path');
 var http = require('http')
 
+var router = express.Router();
 app.set('superNode-auth', 'node-auth');
 
 
-module.exports = (req, res) => {
+router.post('/', function (req, res, next) {
+    console.log(req.body)
     var email = req.body.email || '';
     var senha = req.body.senha || '';
     if (email == '' || senha == '') {
@@ -21,12 +23,12 @@ module.exports = (req, res) => {
     console.log(senha);
 
 
-    Usuario.findOne({ email: email }, function(err, user) {
+    Usuario.findOne({ email: email }, function (err, user) {
         if (err || user == null) {
             return res.sendStatus(401)
         }
 
-        user.verificaSenha(senha, function(isMatch) {
+        user.verificaSenha(senha, function (isMatch) {
 
             if (!isMatch) {
 
@@ -37,7 +39,7 @@ module.exports = (req, res) => {
                 expiresIn: 60 * 60 * 24 //o token irá expirar em 24 horas
             });
             user.accessToken = token;
-         
+
             console.log(token);
             let getData = () => {
 
@@ -45,11 +47,13 @@ module.exports = (req, res) => {
             }
 
             var expires = moment().add(7, 'days').valueOf();
-    
-            res.json({
+
+            res.status(200).json({
                 user: user.toJSON()
             });
-           
+
         });
     });
-};
+});
+
+module.exports = router;

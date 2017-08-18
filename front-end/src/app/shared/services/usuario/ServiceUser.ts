@@ -31,11 +31,11 @@ export class UserService {
 
     private jwt() {
         // create authorization header with jwt token
-        // let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        // console.log(currentUser);
-        // if (currentUser && currentUser.accessToken) {
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        console.log(currentUser);
+        if (currentUser && currentUser.accessToken) {
             let headers = new Headers({ 'Authorization': 'Bearer ' + 'currentUser.accessToken '});
             return new RequestOptions({ headers: headers });
-        // }
+        }
     }
 }

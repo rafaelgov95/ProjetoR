@@ -16,7 +16,7 @@ export class BlogComponent implements OnInit {
   inscricao: Subscription;
   constructor(private servicePost: ServicePost, private router: Router) {
 
-    if (sessionStorage.getItem('currentUser')) {
+    if (localStorage.getItem('currentUser')) {
       this.adicionarPost = false;
     } else {
       this.adicionarPost = true;
