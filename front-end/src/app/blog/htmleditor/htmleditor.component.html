@@ -9,7 +9,7 @@
     </div>
     <div class="form-group" [ngClass]="{' has-success':!formErrors.resumo,'has-danger':formErrors.resumo}">
         <label class="form-control-label" for="inputSuccess">Resumo</label>
-        <input type="text" class="form-control " formControlName="resumo" id="inputSuccess" [ngClass]="{'form-control-success':!formErrors.resumo,'form-control-danger':formErrors.resumo}">
+        <input type="text" class="form-control" formControlName="resumo" id="inputSuccess" [ngClass]="{'form-control-success':!formErrors.resumo,'form-control-danger':formErrors.resumo}">
         <div *ngIf="formErrors.resumo" class="alert alert-danger">
             {{ formErrors.resumo}}
         </div>

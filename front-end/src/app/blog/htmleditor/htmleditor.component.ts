@@ -16,18 +16,18 @@ export class HtmleditorComponent implements OnInit {
     private servicePost: ServicePost) {
 
     this.post = new Post('', '', '', '');
-    if (sessionStorage.getItem('currentUser')) {
-      this.post.autor = JSON.parse(sessionStorage.getItem('currentUser'))['nome']
+    if (localStorage.getItem('currentUser')) {
+      this.post.autor = JSON.parse(localStorage.getItem('currentUser'))['nome']
     }
   }
 
   onSubmit(evento) {
 
-    this.servicePost.create(evento).subscribe(data => console.log("Sucesso"), err => console.log("Erro"))
+    this.servicePost.create(evento).subscribe(data => console.log(data), err => console.log("Erro"))
     this.servicePost.emitterDelivery.emit(evento)
     this.HtmlEditor.reset()
-
-
+    
+    this.buildForm();
   }
 
   ngOnInit() {
@@ -39,6 +39,8 @@ export class HtmleditorComponent implements OnInit {
       'titulo': [this.post.titulo, [Validators.required, Validators.minLength, Validators.maxLength]],
       'resumo': [this.post.resumo, [Validators.required, Validators.minLength, Validators.maxLength]],
       'texto': [this.post.texto, [Validators.required, Validators.minLength]],
+      'autor': [this.post.autor, [Validators.required]],
+      'criada_em':[this.post.criada_em]
     });
 
 
