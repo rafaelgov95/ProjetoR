@@ -1,3 +1,4 @@
+import { EmitterDelivery } from './../shared/services/EmitterDelivery/EmitterDelivery';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { Post } from './../shared/models/post';
@@ -13,6 +14,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class BlogComponent implements OnInit {
   adicionarPost = false;
   Posts: Post[];
+  PostEditar: Post;
   inscricao: Subscription;
   constructor(private servicePost: ServicePost, private router: Router) {
 
@@ -34,7 +36,13 @@ export class BlogComponent implements OnInit {
   }
   Remove(post: Post) {
     this.servicePost.remove(post)
-      .subscribe(data => {this.Posts.splice(this.Posts.indexOf(post), 1), console.log(post)}, err => console.log(err));
+      .subscribe(data => { this.Posts.splice(this.Posts.indexOf(post), 1), console.log(post) }, err => console.log(err));
+
+  }
+
+  Editar(post: Post) {
+    // EmitterDelivery.get(this.)
+    this.PostEditar = post;
   }
 
 }

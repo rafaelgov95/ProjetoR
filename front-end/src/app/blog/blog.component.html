@@ -31,8 +31,14 @@
         </a>
         <p class="post-meta">Postado por
           <a href="#">{{post.autor}}</a> em {{post.criada_em | date:'medium' }}  </p>
-          <button class="btn btn-danger" (click)="Remove(post)" *ngIf="adicionarPost == false">Excluir</button>
-      </div>
+         <div  *ngIf="adicionarPost == false">
+            <button class="btn btn-danger" (click)="Remove(post)"><span class="glyphicon glyphicon-remove"></span></button>
+          <button class="btn btn-info" (click)="Editar(post)" ><span class="glyphicon glyphicon-edit"></span></button>
+      
+        </div>
+         
+          
+        </div>
       <hr>
       <!-- Pager -->
       <div class="clearfix ">
@@ -46,7 +52,7 @@
   <div class="row ">
     <div class="col-lg-2"> </div>
     <div class="col-lg-8"  *ngIf="adicionarPost == false">
-      <htmleditor-component> </htmleditor-component>
+      <htmleditor-component [editar]='PostEditar'> </htmleditor-component>
     </div>
     <div class="col-lg-2"> </div>
   </div>

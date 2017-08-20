@@ -12,10 +12,11 @@ export class HtmleditorComponent implements OnInit {
   post: Post;
   HtmlEditor: FormGroup;
   esconder = false;
+  @Input() editar;
   constructor(private fb: FormBuilder,
     private servicePost: ServicePost) {
-
     this.post = new Post('', '', '', '');
+
     if (localStorage.getItem('currentUser')) {
       this.post.autor = JSON.parse(localStorage.getItem('currentUser'))['nome']
     }
@@ -26,7 +27,6 @@ export class HtmleditorComponent implements OnInit {
     this.servicePost.create(evento).subscribe(data => console.log(data), err => console.log("Erro"))
     this.servicePost.emitterDelivery.emit(evento)
     this.HtmlEditor.reset()
-    
     this.buildForm();
   }
 
@@ -34,13 +34,21 @@ export class HtmleditorComponent implements OnInit {
     this.buildForm();
 
   }
+
+  ngOnChanges(changes: any) {
+    // console.log(this.editar)
+    // this.post=changes;
+    // console.log(this.post)
+
+  }
   buildForm(): void {
+    // this.post = new Post('', '', '', '');
     this.HtmlEditor = this.fb.group({
       'titulo': [this.post.titulo, [Validators.required, Validators.minLength, Validators.maxLength]],
       'resumo': [this.post.resumo, [Validators.required, Validators.minLength, Validators.maxLength]],
       'texto': [this.post.texto, [Validators.required, Validators.minLength]],
       'autor': [this.post.autor, [Validators.required]],
-      'criada_em':[this.post.criada_em]
+      'criada_em': [this.post.criada_em]
     });
 
 
