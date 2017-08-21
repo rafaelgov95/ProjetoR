@@ -1,3 +1,4 @@
+import { EmitterDelivery } from './../../shared/services/EmitterDelivery/EmitterDelivery';
 import { ServicePost } from './../../shared/services/posts/ServicePost';
 import { Post } from './../../shared/models/post';
 import { Component, Input, Output, forwardRef, OnInit } from '@angular/core';
@@ -10,10 +11,12 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 })
 export class HtmleditorComponent implements OnInit {
   post: Post;
+  id : string;
   HtmlEditor: FormGroup;
   esconder = false;
-  @Input() editar;
+  @Input() editarPost: Post;
   constructor(private fb: FormBuilder,
+
     private servicePost: ServicePost) {
     this.post = new Post('', '', '', '');
 
@@ -21,11 +24,22 @@ export class HtmleditorComponent implements OnInit {
       this.post.autor = JSON.parse(localStorage.getItem('currentUser'))['nome']
     }
   }
+  
+  ngOnChanges() {
+    console.log(this.editarPost) 
+    if(this.editarPost !=null){
+      this.post=this.editarPost;
+    }
+    
+    this.buildForm();
+    
+  }
+
 
   onSubmit(evento) {
 
-    this.servicePost.create(evento).subscribe(data => console.log(data), err => console.log("Erro"))
-    this.servicePost.emitterDelivery.emit(evento)
+    this.servicePost.create(evento).subscribe(data => this.servicePost.emitterDelivery.emit(data), err => console.log("Erro"))
+
     this.HtmlEditor.reset()
     this.buildForm();
   }
@@ -35,15 +49,9 @@ export class HtmleditorComponent implements OnInit {
 
   }
 
-  ngOnChanges(changes: any) {
-    // console.log(this.editar)
-    // this.post=changes;
-    // console.log(this.post)
-
-  }
   buildForm(): void {
-    // this.post = new Post('', '', '', '');
     this.HtmlEditor = this.fb.group({
+      // '_id': [this.post._id, []],
       'titulo': [this.post.titulo, [Validators.required, Validators.minLength, Validators.maxLength]],
       'resumo': [this.post.resumo, [Validators.required, Validators.minLength, Validators.maxLength]],
       'texto': [this.post.texto, [Validators.required, Validators.minLength]],
@@ -62,9 +70,7 @@ export class HtmleditorComponent implements OnInit {
   onValueChanged(data?: any) {
     if (!this.HtmlEditor) { return; }
     const form = this.HtmlEditor;
-    console.log(form)
     for (const field in this.formErrors) {
-      // console.log(field)
       this.formErrors[field] = '';
       const control = form.get(field);
 

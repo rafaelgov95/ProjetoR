@@ -9,12 +9,12 @@ module.exports = (Schema, Banco) => {
     }
     const Actions = {}
     Actions.listar = (req, res) => {
-            const query = req.query;
-            console.log(query)
-            model.find(query, (err, data) => {
-                callback(err, data, res)
-            });
-        },
+        const query = req.query;
+        console.log(query)
+        model.find(query, (err, data) => {
+            callback(err, data, res)
+        });
+    },
         Actions.buscar = (req, res) => {
             const query = req.query;
             console.log(query)
@@ -25,9 +25,10 @@ module.exports = (Schema, Banco) => {
         Actions.save = (req, res) => {
             const body = req.body;
             const modelo = new model(body);
-            console.log("chegando")
+
             modelo.save((err, data) => {
                 callback(err, data, res)
+
             });
         },
         Actions.remove = (req, res) => {

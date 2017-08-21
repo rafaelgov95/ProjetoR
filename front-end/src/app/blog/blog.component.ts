@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { Post } from './../shared/models/post';
 import { ServicePost } from './../shared/services/posts/ServicePost';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
@@ -14,7 +14,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class BlogComponent implements OnInit {
   adicionarPost = false;
   Posts: Post[];
-  PostEditar: Post;
+  editarPost:Post;
   inscricao: Subscription;
   constructor(private servicePost: ServicePost, private router: Router) {
 
@@ -24,8 +24,12 @@ export class BlogComponent implements OnInit {
       this.adicionarPost = true;
     }
   }
-  LOGO = { 'background': 'url(./assets/img/logo.jpg) center center / cover no-repeat' }
 
+  LOGO = { 'background': 'url(./assets/img/logo.jpg) center center / cover no-repeat' }
+ 
+  Editar(post) {
+    this.editarPost= post
+  }
 
   ngOnInit() {
     this.inscricao = this.servicePost.getAll().subscribe(data => this.Posts = data, erro => console.log('Erro'));
@@ -37,12 +41,5 @@ export class BlogComponent implements OnInit {
   Remove(post: Post) {
     this.servicePost.remove(post)
       .subscribe(data => { this.Posts.splice(this.Posts.indexOf(post), 1), console.log(post) }, err => console.log(err));
-
-  }
-
-  Editar(post: Post) {
-    // EmitterDelivery.get(this.)
-    this.PostEditar = post;
-  }
-
+ }
 }
