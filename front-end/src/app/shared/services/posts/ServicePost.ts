@@ -40,10 +40,16 @@ export class ServicePost {
       .map((response: Response) => response.json());
   }
 
-  // getPost(id: string): Observable<Post> {
-  //   console.log(id)
-  //   return this.http.get(this.Url + '/buscar?_id=' + id, this.options).map((response: Response) => response.json());
-  // }
+  updatePost(body: Post): Observable<Comment[]> {
+    this.params.set('_id', body._id);
+    let bodyString = JSON.stringify(body); // Stringify payload
+    let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+    let options = new RequestOptions({ headers: headers, params: this.params  }); // Create a request option
+
+    return this.http.put(this.Url+'/update', body, options) // ...using put request
+      .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+  }
 
   create(user: Post): Observable<Post> {
 

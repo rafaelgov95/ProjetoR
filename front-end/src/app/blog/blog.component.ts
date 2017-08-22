@@ -14,7 +14,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class BlogComponent implements OnInit {
   adicionarPost = false;
   Posts: Post[];
-  editarPost:Post;
+  editarPost: Post
   inscricao: Subscription;
   constructor(private servicePost: ServicePost, private router: Router) {
 
@@ -25,15 +25,24 @@ export class BlogComponent implements OnInit {
     }
   }
 
-  LOGO = { 'background': 'url(./assets/img/logo.jpg) center center / cover no-repeat' }
- 
-  Editar(post) {
-    this.editarPost= post
+  // LOGO = { 'background': 'url(./assets/img/logo.jpg) center center / cover no-repeat' }
+
+  Editar(post: Post) {
+    this.editarPost = post
   }
 
+  CancelarEditar() {
+    this.editarPost = null;
+
+  }
   ngOnInit() {
     this.inscricao = this.servicePost.getAll().subscribe(data => this.Posts = data, erro => console.log('Erro'));
-    this.servicePost.emitterDelivery.subscribe(post => this.Posts.push(post))
+    this.servicePost.emitterDelivery.subscribe(post => {
+      if (this.Posts.find(post)) {
+       console.log("Esse cara ja existe")
+      }
+      this.Posts.push(post)
+    })
   }
   ngOnDestroy() {
     this.inscricao.unsubscribe();
@@ -41,5 +50,5 @@ export class BlogComponent implements OnInit {
   Remove(post: Post) {
     this.servicePost.remove(post)
       .subscribe(data => { this.Posts.splice(this.Posts.indexOf(post), 1), console.log(post) }, err => console.log(err));
- }
+  }
 }

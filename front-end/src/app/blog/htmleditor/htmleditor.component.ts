@@ -1,7 +1,7 @@
 import { EmitterDelivery } from './../../shared/services/EmitterDelivery/EmitterDelivery';
 import { ServicePost } from './../../shared/services/posts/ServicePost';
 import { Post } from './../../shared/models/post';
-import { Component, Input, Output, forwardRef, OnInit } from '@angular/core';
+import { Component, Input, Output, forwardRef, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
@@ -11,9 +11,12 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 })
 export class HtmleditorComponent implements OnInit {
   post: Post;
-  id : string;
+  id: string;
+  salve = true;
   HtmlEditor: FormGroup;
   esconder = false;
+  editar = false;
+  @Output() AvisaPai = new EventEmitter();
   @Input() editarPost: Post;
   constructor(private fb: FormBuilder,
 
@@ -24,24 +27,37 @@ export class HtmleditorComponent implements OnInit {
       this.post.autor = JSON.parse(localStorage.getItem('currentUser'))['nome']
     }
   }
-  
-  ngOnChanges() {
-    console.log(this.editarPost) 
-    if(this.editarPost !=null){
-      this.post=this.editarPost;
+  ngOnChanges(event) {
+    if (this.editarPost != undefined) {
+      this.post = this.editarPost
+      console.log("Editar:", this.post)
+      this.editar = true;
+      this.buildForm();
     }
-    
+
+  }
+
+  cancelar() {
+    this.editar = false;
+    this.HtmlEditor.reset()
+    this.editarPost = this.post = new Post('', '', '', '')
     this.buildForm();
-    
+    this.AvisaPai.emit()
   }
 
 
-  onSubmit(evento) {
+  onSubmit(post: Post) {
 
-    this.servicePost.create(evento).subscribe(data => this.servicePost.emitterDelivery.emit(data), err => console.log("Erro"))
-
-    this.HtmlEditor.reset()
-    this.buildForm();
+    if (this.editar) {
+      console.log("Com ID")
+      this.servicePost.updatePost(post).subscribe(data => { this.servicePost.emitterDelivery.emit(post), console.log(data) }, err => console.log("Erro"))
+    } else {
+      console.log("Sem ID")
+      this.servicePost.create(post).subscribe(data => this.servicePost.emitterDelivery.emit(data), err => console.log("Erro"))
+      this.HtmlEditor.reset()
+      this.buildForm();
+    }
+    console.log(post)
   }
 
   ngOnInit() {
@@ -51,7 +67,6 @@ export class HtmleditorComponent implements OnInit {
 
   buildForm(): void {
     this.HtmlEditor = this.fb.group({
-      // '_id': [this.post._id, []],
       'titulo': [this.post.titulo, [Validators.required, Validators.minLength, Validators.maxLength]],
       'resumo': [this.post.resumo, [Validators.required, Validators.minLength, Validators.maxLength]],
       'texto': [this.post.texto, [Validators.required, Validators.minLength]],

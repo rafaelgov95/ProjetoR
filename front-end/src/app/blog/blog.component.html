@@ -33,7 +33,7 @@
           <a href="#">{{post.autor}}</a> em {{post.criada_em | date:'medium' }}  </p>
          <div  *ngIf="adicionarPost == false">
             <button class="btn btn-danger" (click)="Remove(post)"><span class="glyphicon glyphicon-remove"></span></button>
-          <button class="btn btn-info" (click)="Editar(post)" ><span class="glyphicon glyphicon-edit"></span></button>
+          <button class="btn btn-warning" (click)="Editar(post)" ><span class="glyphicon glyphicon-edit"></span></button>
       
         </div>
          
@@ -52,7 +52,7 @@
   <div class="row ">
     <div class="col-lg-2"> </div>
     <div class="col-lg-8"  *ngIf="adicionarPost == false">
-      <htmleditor-component [editarPost]="editarPost"> </htmleditor-component>
+      <htmleditor-component (AvisaPai)="CancelarEditar($event)"  [editarPost]="editarPost"> </htmleditor-component>
     </div>
     <div class="col-lg-2"> </div>
   </div>
