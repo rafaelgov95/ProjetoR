@@ -68,7 +68,7 @@ export class HtmleditorComponent implements OnInit {
     this.buildForm();
     this.editar = false;
     console.log("Submetido:",post)
-
+    this.AvisaPai.emit()
   }
 
   ngOnInit() {

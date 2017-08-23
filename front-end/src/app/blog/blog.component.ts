@@ -37,7 +37,7 @@ export class BlogComponent implements OnInit {
   CancelarEditar() {
     this.editarPost = null;
     this.editar = false;
-
+    console.log("Vai avisodo")
   }
   ngOnInit() {
     this.inscricao = this.servicePost.getAll().subscribe(data => this.Posts = data, erro => console.log('Erro'));
