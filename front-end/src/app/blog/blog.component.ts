@@ -44,6 +44,7 @@ export class BlogComponent implements OnInit {
       if (pos > -1){
         console.log("Esse cara ja existe vamos atualizar")
         this.Posts.splice(pos,1)
+        this.Posts[pos]=post
       } else {
         console.log("novo cara adicionado")
         this.Posts.push(post);
