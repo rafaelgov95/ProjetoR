@@ -14,7 +14,8 @@ export class ServicePost {
   params: URLSearchParams;
 
   token: string;
-  private Url = 'http://localhost:3000/api/posts';
+    // Url:string='http://localhost:3000';
+    Url:string='/';
 
   constructor(private http: Http) {
 
@@ -30,13 +31,13 @@ export class ServicePost {
   }
 
   getAll(): Observable<Post[]> {
-    return this.http.get(this.Url + '/listar').map((response: Response) => response.json());
+    return this.http.get(this.Url + 'listar').map((response: Response) => response.json());
   }
 
   getPost(id: string): Observable<Post> {
     this.params.set('_id', id);
     let options = new RequestOptions({ headers: this.headers, params: this.params });
-    return this.http.get(this.Url + '/buscar', options)
+    return this.http.get(this.Url + 'buscar', options)
       .map((response: Response) => response.json());
   }
 
@@ -46,21 +47,21 @@ export class ServicePost {
     let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
     let options = new RequestOptions({ headers: headers, params: this.params  }); // Create a request option
 
-    return this.http.put(this.Url+'/update', body, options) // ...using put request
+    return this.http.put(this.Url+'update', body, options) // ...using put request
       .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
       .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
   }
 
   create(user: Post): Observable<Post> {
 
-    return this.http.post(this.Url + '/save', user).map((response: Response) => response.json());
+    return this.http.post(this.Url + 'save', user).map((response: Response) => response.json());
   }
 
   remove(post: Post): Observable<Post> {
     this.params.set('_id', post._id);
     let options = new RequestOptions({ headers: this.headers, params: this.params });
     return this.http
-      .delete(this.Url + "/remove", options)
+      .delete(this.Url + "remove", options)
       .map((response: Response) => response.json());
   }
 
@@ -73,20 +74,4 @@ export class ServicePost {
       return new RequestOptions({ headers: headers });
     }
   }
-
-  // private extractData(res: Response) {
-  //   let body = res.json();
-  //   return body || {};
-  // }
-  // private handleError(error: Response | any) {
-  //   let errMsg: string;
-  //   if (error instanceof Response) {
-  //     const body = error.json() || '';
-  //     const err = body.error || JSON.stringify(body);
-  //     errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-  //   } else {
-  //     errMsg = error.message ? error.message : error.toString();
-  //   }
-  //   return Observable.throw(errMsg);
-  // }
 }

@@ -32,7 +32,7 @@
         <p class="post-meta">Postado por
           <a href="#">{{post.autor}}</a> em {{post.criada_em | date:'medium' }}  </p>
          <div  *ngIf="adicionarPost == false">
-            <button class="btn btn-danger" (click)="Remove(post)"><span class="glyphicon glyphicon-remove"></span></button>
+            <button class="btn btn-danger"  [disabled]="editar" (click)="Remove(post)"><span class="glyphicon glyphicon-remove"></span></button>
           <button class="btn btn-warning" (click)="Editar(post)" ><span class="glyphicon glyphicon-edit"></span></button>
       
         </div>

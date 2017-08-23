@@ -6,6 +6,9 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 @Injectable()
 export class LoginService {
+    // Url:string='http://localhost:3000';
+    Url:string='/';
+    
     headers = new Headers();
     constructor(private http: Http) {
         this.headers.append('Content-Type', 'application/json');
@@ -15,7 +18,7 @@ export class LoginService {
     logar(email: string, senha: string): Observable<any> {
         let body = JSON.stringify({ email: email, senha: senha })
 
-        return this.http.post('http://localhost:3000/api/autentica', body, { headers: this.headers })
+        return this.http.post(this.Url+'api/autentica', body, { headers: this.headers })
             .map((res: Response) => {
                 if (res.status < 200 || res.status >= 300) {
                     throw new Error('Requesição Falhou' + res.status);
@@ -34,7 +37,7 @@ export class LoginService {
     }
 
     create(user: Login) {
-        return this.http.post('http://localhost:3000/api/login/save', user).map((response: Response) => response.json());
+        return this.http.post(this.Url+'api/login/save', user).map((response: Response) => response.json());
     }
 
 

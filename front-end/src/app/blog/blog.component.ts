@@ -13,6 +13,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class BlogComponent implements OnInit {
   adicionarPost = false;
+  editar = false;
   Posts: Post[];
   editarPost: Post
   inscricao: Subscription;
@@ -30,10 +31,12 @@ export class BlogComponent implements OnInit {
   Editar(post: Post) {
     console.log("Estou enviando isso:",post)
     this.editarPost = post
+    this.editar = true;
   }
 
   CancelarEditar() {
     this.editarPost = null;
+    this.editar = false;
 
   }
   ngOnInit() {
@@ -43,7 +46,7 @@ export class BlogComponent implements OnInit {
       console.log(pos)
       if (pos > -1){
         console.log("Esse cara ja existe vamos atualizar")
-        this.Posts.splice(pos,1)
+        // this.Posts.splice(pos,1)
         this.Posts[pos]=post
       } else {
         console.log("novo cara adicionado")
