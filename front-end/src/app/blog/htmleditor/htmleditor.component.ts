@@ -12,23 +12,25 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 export class HtmleditorComponent implements OnInit {
   post: Post;
   id: string;
-  salve = true;
+  autor: string
   HtmlEditor: FormGroup;
   esconder = false;
   editar = false;
   @Output() AvisaPai = new EventEmitter();
-  @Input() editarPost: Post;
+  @Input() editarPost;
   constructor(private fb: FormBuilder,
 
     private servicePost: ServicePost) {
-    this.post = new Post('', '', '', '');
 
     if (localStorage.getItem('currentUser')) {
-      this.post.autor = JSON.parse(localStorage.getItem('currentUser'))['nome']
+      this.autor = JSON.parse(localStorage.getItem('currentUser'))['nome']
     }
+
+    this.post = new Post('', '', '', this.autor, new Date());
   }
   ngOnChanges(event) {
     if (this.editarPost != undefined) {
+      this.HtmlEditor.reset()
       this.post = this.editarPost
       console.log("Editar:", this.post)
       this.editar = true;
@@ -39,25 +41,34 @@ export class HtmleditorComponent implements OnInit {
 
   cancelar() {
     this.editar = false;
-    this.HtmlEditor.reset()
-    this.editarPost = this.post = new Post('', '', '', '')
+    this.post = new Post('', '', '', this.autor, new Date());
+
+    this.HtmlEditor.reset();
+    
     this.buildForm();
     this.AvisaPai.emit()
   }
 
 
   onSubmit(post: Post) {
-
     if (this.editar) {
-      console.log("Com ID")
-      this.servicePost.updatePost(post).subscribe(data => { this.servicePost.emitterDelivery.emit(post), console.log(data) }, err => console.log("Erro"))
+      post._id= this.post._id;
+      this.servicePost.updatePost(post).subscribe(data => {
+        this.servicePost.emitterDelivery.emit(post)
+      }, err => console.log("Erro"))
+
     } else {
-      console.log("Sem ID")
-      this.servicePost.create(post).subscribe(data => this.servicePost.emitterDelivery.emit(data), err => console.log("Erro"))
-      this.HtmlEditor.reset()
-      this.buildForm();
+      this.servicePost.create(post).subscribe(data =>
+        this.servicePost.emitterDelivery.emit(data),
+        err => console.log("Erro"))
+
     }
-    console.log(post)
+    this.HtmlEditor.reset()
+    this.post = new Post('', '', '', this.autor, new Date());    
+    this.buildForm();
+    this.editar = false;
+    console.log("Submetido:",post)
+
   }
 
   ngOnInit() {
@@ -85,6 +96,7 @@ export class HtmleditorComponent implements OnInit {
   onValueChanged(data?: any) {
     if (!this.HtmlEditor) { return; }
     const form = this.HtmlEditor;
+    console.log(this.HtmlEditor)
     for (const field in this.formErrors) {
       this.formErrors[field] = '';
       const control = form.get(field);

@@ -32,7 +32,7 @@ module.exports = (Schema, Banco) => {
             });
         },
         Actions.remove = (req, res) => {
-            const body = req.body
+            const body = req.query
             model.remove(body, (err, data) => {
                 callback(err, data, res)
             });

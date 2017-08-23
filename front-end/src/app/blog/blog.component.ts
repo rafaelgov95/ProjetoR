@@ -28,6 +28,7 @@ export class BlogComponent implements OnInit {
   // LOGO = { 'background': 'url(./assets/img/logo.jpg) center center / cover no-repeat' }
 
   Editar(post: Post) {
+    console.log("Estou enviando isso:",post)
     this.editarPost = post
   }
 
@@ -37,11 +38,17 @@ export class BlogComponent implements OnInit {
   }
   ngOnInit() {
     this.inscricao = this.servicePost.getAll().subscribe(data => this.Posts = data, erro => console.log('Erro'));
-    this.servicePost.emitterDelivery.subscribe(post => {
-      if (this.Posts.find(post)) {
-       console.log("Esse cara ja existe")
+    this.servicePost.emitterDelivery.subscribe((post:any) => {
+      let pos = this.Posts.indexOf(this.Posts.find(item => item._id === post._id));
+      console.log(pos)
+      if (pos > -1){
+        console.log("Esse cara ja existe vamos atualizar")
+        this.Posts.splice(pos,1)
+      } else {
+        console.log("novo cara adicionado")
+        this.Posts.push(post);
       }
-      this.Posts.push(post)
+
     })
   }
   ngOnDestroy() {

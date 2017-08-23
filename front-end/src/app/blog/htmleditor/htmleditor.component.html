@@ -15,7 +15,7 @@
         </div>
     </div>
     <textarea [froalaEditor] formControlName="texto" [(froalaModel)]="HtmlEditor.texto"></textarea>
-    <button  [disabled]="!HtmlEditor.valid" type="submit" class="btn btn-warning btn-lg btn-block" *ngIf="editar==true">Editar Mensagem</button>
+    <button  [disabled]="!HtmlEditor.valid" type="submit" class="btn btn-warning btn-lg btn-block" *ngIf="editar==true">Update Mensagem</button>
     <button (click)="cancelar()" class="btn btn-danger btn-lg btn-block" *ngIf="editar==true">Cancelar</button>    
     
     <button  [disabled]="!HtmlEditor.valid" type="submit" class="btn btn-secondary btn-lg btn-block" *ngIf="editar==false">Enviar Mensagem</button>

@@ -16,7 +16,7 @@ export class PostsComponent implements OnInit {
   subpost: Subscription;
 
   constructor(private router: ActivatedRoute, private servicoPost: ServicePost) {
-    this.post = new Post('','','','');
+    this.post = new Post('','','','',new Date);
 
 
   }
