@@ -106,6 +106,7 @@ var BlogComponent = (function () {
     BlogComponent.prototype.CancelarEditar = function () {
         this.editarPost = null;
         this.editar = false;
+        console.log("Vai avisodo");
     };
     BlogComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -300,6 +301,7 @@ var HtmleditorComponent = (function () {
         this.buildForm();
         this.editar = false;
         console.log("Submetido:", post);
+        this.AvisaPai.emit();
     };
     HtmleditorComponent.prototype.ngOnInit = function () {
         this.buildForm();
@@ -492,7 +494,8 @@ var ServicePost = (function () {
     function ServicePost(http) {
         this.http = http;
         this.emitterDelivery = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["x" /* EventEmitter */]();
-        this.Url = 'http://localhost:3000/api/posts';
+        // Url:string='http://localhost:3000';
+        this.Url = '/';
         console.log("Servico de Posts");
         this.params = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["e" /* URLSearchParams */]();
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({
@@ -504,12 +507,12 @@ var ServicePost = (function () {
         }
     }
     ServicePost.prototype.getAll = function () {
-        return this.http.get(this.Url + '/listar').map(function (response) { return response.json(); });
+        return this.http.get(this.Url + 'api/posts/listar').map(function (response) { return response.json(); });
     };
     ServicePost.prototype.getPost = function (id) {
         this.params.set('_id', id);
         var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* RequestOptions */]({ headers: this.headers, params: this.params });
-        return this.http.get(this.Url + '/buscar', options)
+        return this.http.get(this.Url + 'api/posts/buscar', options)
             .map(function (response) { return response.json(); });
     };
     ServicePost.prototype.updatePost = function (body) {
@@ -517,18 +520,18 @@ var ServicePost = (function () {
         var bodyString = JSON.stringify(body); // Stringify payload
         var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
         var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* RequestOptions */]({ headers: headers, params: this.params }); // Create a request option
-        return this.http.put(this.Url + '/update', body, options) // ...using put request
+        return this.http.put(this.Url + 'api/posts/update', body, options) // ...using put request
             .map(function (res) { return res.json(); }) // ...and calling .json() on the response to return data
             .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_0_rxjs__["Observable"].throw(error.json().error || 'Server error'); }); //...errors if any
     };
     ServicePost.prototype.create = function (user) {
-        return this.http.post(this.Url + '/save', user).map(function (response) { return response.json(); });
+        return this.http.post(this.Url + 'api/posts/save', user).map(function (response) { return response.json(); });
     };
     ServicePost.prototype.remove = function (post) {
         this.params.set('_id', post._id);
         var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* RequestOptions */]({ headers: this.headers, params: this.params });
         return this.http
-            .delete(this.Url + "/remove", options)
+            .delete(this.Url + "api/posts/remove", options)
             .map(function (response) { return response.json(); });
     };
     ServicePost.prototype.jwt = function () {

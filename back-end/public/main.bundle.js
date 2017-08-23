@@ -800,12 +800,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var LoginService = (function () {
     function LoginService(http) {
         this.http = http;
+        // Url:string='http://localhost:3000';
+        this.Url = '/';
         this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
         this.headers.append('Content-Type', 'application/json');
     }
     LoginService.prototype.logar = function (email, senha) {
         var body = JSON.stringify({ email: email, senha: senha });
-        return this.http.post('http://localhost:3000/api/autentica', body, { headers: this.headers })
+        return this.http.post(this.Url + 'api/autentica', body, { headers: this.headers })
             .map(function (res) {
             if (res.status < 200 || res.status >= 300) {
                 throw new Error('Requesição Falhou' + res.status);
@@ -822,7 +824,7 @@ var LoginService = (function () {
         });
     };
     LoginService.prototype.create = function (user) {
-        return this.http.post('http://localhost:3000/api/login/save', user).map(function (response) { return response.json(); });
+        return this.http.post(this.Url + 'api/login/save', user).map(function (response) { return response.json(); });
     };
     LoginService.prototype.logout = function () {
         sessionStorage.removeItem('currentUser');
