@@ -31,13 +31,13 @@ export class ServicePost {
   }
 
   getAll(): Observable<Post[]> {
-    return this.http.get(this.Url + 'listar').map((response: Response) => response.json());
+    return this.http.get(this.Url + 'api/posts/listar').map((response: Response) => response.json());
   }
 
   getPost(id: string): Observable<Post> {
     this.params.set('_id', id);
     let options = new RequestOptions({ headers: this.headers, params: this.params });
-    return this.http.get(this.Url + 'buscar', options)
+    return this.http.get(this.Url + 'api/posts/buscar', options)
       .map((response: Response) => response.json());
   }
 
@@ -47,21 +47,21 @@ export class ServicePost {
     let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
     let options = new RequestOptions({ headers: headers, params: this.params  }); // Create a request option
 
-    return this.http.put(this.Url+'update', body, options) // ...using put request
+    return this.http.put(this.Url+'api/posts/update', body, options) // ...using put request
       .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
       .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
   }
 
   create(user: Post): Observable<Post> {
 
-    return this.http.post(this.Url + 'save', user).map((response: Response) => response.json());
+    return this.http.post(this.Url + 'api/posts/save', user).map((response: Response) => response.json());
   }
 
   remove(post: Post): Observable<Post> {
     this.params.set('_id', post._id);
     let options = new RequestOptions({ headers: this.headers, params: this.params });
     return this.http
-      .delete(this.Url + "remove", options)
+      .delete(this.Url + "api/posts/remove", options)
       .map((response: Response) => response.json());
   }
 
