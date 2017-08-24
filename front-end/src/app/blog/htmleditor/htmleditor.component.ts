@@ -10,6 +10,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 })
 export class HtmleditorComponent implements OnInit {
   post: Post;
+  teste 
   id: string;
   autor: string
   HtmlEditor: FormGroup;
@@ -26,14 +27,16 @@ export class HtmleditorComponent implements OnInit {
     }
 
     this.post = new Post('', '', '', this.autor, new Date());
+    
   }
   ngOnChanges(event) {
     if (this.editarPost != undefined) {
-      this.HtmlEditor.reset()
       this.post = this.editarPost
+      this.teste = this.post.texto      
       console.log("Editar:", this.post)
-      this.editar = true;
       this.buildForm();
+      // this.esconder=true 
+      this.editar = true;
     }
 
   }
@@ -43,7 +46,7 @@ export class HtmleditorComponent implements OnInit {
     this.post = new Post('', '', '', this.autor, new Date());
 
     this.HtmlEditor.reset();
-    
+
     this.buildForm();
     this.AvisaPai.emit()
   }
@@ -51,7 +54,7 @@ export class HtmleditorComponent implements OnInit {
 
   onSubmit(post: Post) {
     if (this.editar) {
-      post._id= this.post._id;
+      post._id = this.post._id;
       this.servicePost.updatePost(post).subscribe(data => {
         this.servicePost.emitterDelivery.emit(post)
       }, err => console.log("Erro"))
@@ -63,10 +66,10 @@ export class HtmleditorComponent implements OnInit {
 
     }
     this.HtmlEditor.reset()
-    this.post = new Post('', '', '', this.autor, new Date());    
+    this.post = new Post('', '', '', this.autor, new Date());
     this.buildForm();
     this.editar = false;
-    console.log("Submetido:",post)
+    console.log("Submetido:", post)
     this.AvisaPai.emit()
   }
 
@@ -76,6 +79,7 @@ export class HtmleditorComponent implements OnInit {
   }
 
   buildForm(): void {
+    console.log('build',this.post.texto)
     this.HtmlEditor = this.fb.group({
       'titulo': [this.post.titulo, [Validators.required, Validators.minLength, Validators.maxLength]],
       'resumo': [this.post.resumo, [Validators.required, Validators.minLength, Validators.maxLength]],
@@ -84,10 +88,9 @@ export class HtmleditorComponent implements OnInit {
       'criada_em': [this.post.criada_em]
     });
 
-
     this.HtmlEditor.valueChanges
       .subscribe(data => this.onValueChanged(data));
-
+      
     this.onValueChanged();
   }
 
@@ -95,7 +98,7 @@ export class HtmleditorComponent implements OnInit {
   onValueChanged(data?: any) {
     if (!this.HtmlEditor) { return; }
     const form = this.HtmlEditor;
-    console.log(this.HtmlEditor)
+    
     for (const field in this.formErrors) {
       this.formErrors[field] = '';
       const control = form.get(field);
