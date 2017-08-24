@@ -6,8 +6,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { Http, HttpModule } from '@angular/http';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-// import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './shared';
@@ -21,7 +19,6 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     BrowserModule, 
     BrowserAnimationsModule,
-    TranslateModule.forRoot(),
     FormsModule, 
     ReactiveFormsModule,
   

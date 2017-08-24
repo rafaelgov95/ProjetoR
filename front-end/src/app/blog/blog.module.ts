@@ -26,8 +26,6 @@ import { ServicePost } from './../shared/services/posts/ServicePost';
     ReactiveFormsModule,
     FormsModule,  
     CKEditorModule 
-     
-
   ],
   declarations: [BlogComponent, PostsComponent, HtmleditorComponent],
   providers: [ServicePost, AlertService],
