@@ -1,5 +1,4 @@
 var jwt = require('jsonwebtoken')
-var moment = require('moment')
 var mongoose = require('mongoose')
 var segredo = 'seusegredodetoken'
 var Usuario = require('../modules/genericModel')(require('../modules/schema/schema-login'), 'login');
