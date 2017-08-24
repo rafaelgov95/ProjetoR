@@ -1,12 +1,12 @@
 
-<form [formGroup]="HtmlEditor" (ngSubmit)="onSubmit(HtmlEditor.value)">
+<!-- <form [formGroup]="HtmlEditor" (ngSubmit)="onSubmit(HtmlEditor.value)">
     <div class="form-group" [ngClass]="{' has-success':!formErrors.titulo,'has-danger':formErrors.titulo}">
         <label class="form-control-label" for="inputSuccess">Titulo</label>
         <input type="text" class="form-control " formControlName="titulo" id="inputSuccess" [ngClass]="{'form-control-success':!formErrors.titulo,'form-control-danger':formErrors.titulo}">
         <div *ngIf="formErrors.titulo" class="alert alert-danger">
             {{ formErrors.titulo }}
         </div>
-    </div>
+    </div>  
     <div class="form-group" [ngClass]="{' has-success':!formErrors.resumo,'has-danger':formErrors.resumo}">
         <label class="form-control-label" for="inputSuccess">Resumo</label>
         <input type="text" class="form-control" formControlName="resumo" id="inputSuccess" [ngClass]="{'form-control-success':!formErrors.resumo,'form-control-danger':formErrors.resumo}">
@@ -23,4 +23,32 @@
     <button type="submit" class="btn btn-secondary btn-lg btn-block" (click)="esconder=!esconder" *ngIf="esconder==false && HtmlEditor.texto!=undefined && HtmlEditor.texto!=''">Mostrar Mensagem</button>
     <br><br><br> 
     <div [froalaView]="HtmlEditor.texto" *ngIf="HtmlEditor.texto!=undefined && esconder!=false"></div>
+</form> -->
+
+
+<form [formGroup]="HtmlEditor" (ngSubmit)="onSubmit(HtmlEditor.value)">
+    <div class="form-group" [ngClass]="{' has-success':!formErrors.titulo,'has-danger':formErrors.titulo}">
+        <label class="form-control-label" for="inputSuccess">Titulo</label>
+        <input type="text" class="form-control " formControlName="titulo" id="inputSuccess" [ngClass]="{'form-control-success':!formErrors.titulo,'form-control-danger':formErrors.titulo}">
+        <div *ngIf="formErrors.titulo" class="alert alert-danger">
+            {{ formErrors.titulo }}
+        </div>
+    </div>  
+    <div class="form-group" [ngClass]="{' has-success':!formErrors.resumo,'has-danger':formErrors.resumo}">
+        <label class="form-control-label" for="inputSuccess">Resumo</label>
+        <input type="text" class="form-control" formControlName="resumo" id="inputSuccess" [ngClass]="{'form-control-success':!formErrors.resumo,'form-control-danger':formErrors.resumo}">
+        <div *ngIf="formErrors.resumo" class="alert alert-danger">
+            {{ formErrors.resumo}}
+        </div>
+    </div>
+    <!-- <ckeditor [formControl]="HtmlEditor.controls['texto']"  debounce="500"></ckeditor> -->
+    <ckeditor [formControl]="HtmlEditor.controls['texto']" [(ngModel)]="HtmlEditor.texto" debounce="500"></ckeditor>
+    <button  [disabled]="!HtmlEditor.valid" type="submit" class="btn btn-warning btn-lg btn-block" *ngIf="editar==true">Update Mensagem</button>
+    <button (click)="cancelar()" class="btn btn-danger btn-lg btn-block" *ngIf="editar==true">Cancelar</button>    
+    
+    <button  [disabled]="!HtmlEditor.valid" type="submit" class="btn btn-secondary btn-lg btn-block" *ngIf="editar==false">Enviar Mensagem</button>
+    <button type="submit" class="btn btn-secondary btn-lg btn-block" (click)="esconder=!esconder" *ngIf="esconder==true && HtmlEditor.texto!=undefined" >Esconder Mensagem</button>
+    <button type="submit" class="btn btn-secondary btn-lg btn-block" (click)="esconder=!esconder" *ngIf="esconder==false && HtmlEditor.texto!=undefined && HtmlEditor.texto!=''">Mostrar Mensagem</button>
+    <br><br><br> 
+    <div [innerHTML]="HtmlEditor.texto" *ngIf="HtmlEditor.texto!=undefined && esconder!=false"></div>
 </form>

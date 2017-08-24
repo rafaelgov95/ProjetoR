@@ -43,13 +43,10 @@ export class BlogComponent implements OnInit {
     this.inscricao = this.servicePost.getAll().subscribe(data => this.Posts = data, erro => console.log('Erro'));
     this.servicePost.emitterDelivery.subscribe((post:any) => {
       let pos = this.Posts.indexOf(this.Posts.find(item => item._id === post._id));
-      console.log(pos)
       if (pos > -1){
-        console.log("Esse cara ja existe vamos atualizar")
-        // this.Posts.splice(pos,1)
         this.Posts[pos]=post
       } else {
-        console.log("novo cara adicionado")
+        console.log(post)
         this.Posts.push(post);
       }
 

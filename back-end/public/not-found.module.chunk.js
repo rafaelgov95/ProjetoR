@@ -26,7 +26,7 @@ var NotFoundRoutingModule = (function () {
     return NotFoundRoutingModule;
 }());
 NotFoundRoutingModule = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgModule */])({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         imports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* RouterModule */].forChild(routes)],
         exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* RouterModule */]]
     })
@@ -80,7 +80,7 @@ var NotFoundComponent = (function () {
     return NotFoundComponent;
 }());
 NotFoundComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-not-found',
         template: __webpack_require__("../../../../../src/app/not-found/not-found.component.html"),
         styles: [__webpack_require__("../../../../../src/app/not-found/not-found.component.scss")]
@@ -117,7 +117,7 @@ var NotFoundModule = (function () {
     return NotFoundModule;
 }());
 NotFoundModule = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgModule */])({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         imports: [
             __WEBPACK_IMPORTED_MODULE_3__not_found_routing_module__["a" /* NotFoundRoutingModule */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* RouterModule */]

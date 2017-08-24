@@ -3,7 +3,6 @@ import { ServicePost } from './../../shared/services/posts/ServicePost';
 import { Post } from './../../shared/models/post';
 import { Component, Input, Output, forwardRef, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-
 @Component({
   selector: 'htmleditor-component',
   templateUrl: 'htmleditor.component.html'

@@ -17,7 +17,6 @@ module.exports = (Schema, Banco) => {
     },
         Actions.buscar = (req, res) => {
             const query = req.query;
-            console.log(query)
             model.findOne(query, (err, data) => {
                 callback(err, data, res)
             });

@@ -1,6 +1,6 @@
 import { ServicePost } from './../../shared/services/posts/ServicePost';
 import { Post } from './../../shared/models/post';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
 
@@ -22,7 +22,8 @@ export class PostsComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.inscricao = this.router.params.subscribe(data => this.id = data['id'], err => console.log("erro"))
+
+   this.inscricao = this.router.params.subscribe(data =>{ this.id = data['id'],console.log("chego")} ,err => console.log("erro"))
    this.subpost = this.servicoPost.getPost(this.id).subscribe(data =>  this.post = data, err => console.log('erro'))
   }
   ngOnDestroy() {
