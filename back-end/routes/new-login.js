@@ -45,8 +45,7 @@ router.post('/', function (req, res, next) {
                 return 'qualquer que seja o seu resultado aqui';
             }
 
-            var expires = moment().add(7, 'days').valueOf();
-
+          
             res.status(200).json({
                 user: user.toJSON()
             });
