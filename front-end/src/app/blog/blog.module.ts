@@ -5,12 +5,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CKEditorComponent } from '../../../node_modules/ng2-ckeditor/src/ckeditor.component';
+import { CKEditorComponent} from '../../../node_modules/ng2-ckeditor/src/ckeditor.component';
+
+import {CKButtonDirective} from '../../../node_modules/ng2-ckeditor/src/ckbutton.directive';
+import {CKGroupDirective} from '../../../node_modules/ng2-ckeditor/src/ckgroup.directive';
 import { HtmleditorComponent } from './htmleditor/htmleditor.component';
 import { PostsComponent } from './posts/posts.component';
 import { BlogRoutingModule } from './blog-routing.module';
 import { BlogComponent } from './blog.component';
-import { CKEditorModule } from 'ng2-ckeditor';
 import { ServicePost } from './../shared/services/posts/ServicePost';
 
 
@@ -19,11 +21,10 @@ import { ServicePost } from './../shared/services/posts/ServicePost';
     CommonModule,
     BlogRoutingModule,
     ReactiveFormsModule,
-    FormsModule,  
-    CKEditorModule 
+    FormsModule
   ],
-  declarations: [BlogComponent, PostsComponent, HtmleditorComponent],
+  declarations: [BlogComponent, PostsComponent, HtmleditorComponent,CKEditorComponent,CKGroupDirective,CKButtonDirective,CKGroupDirective],
   providers: [ServicePost],
-  exports: [BlogComponent, HtmleditorComponent,CKEditorModule]
+  exports: [BlogComponent, HtmleditorComponent]
 })
 export class BlogModule { }
