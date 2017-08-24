@@ -2,8 +2,8 @@
   "name": "servidor",
   "version": "0.0.0",
   "private": true,
-  "scripts": {
-    "start": "nodemon ./bin/www"
+  "scripts": {  
+    "start": "forever start -c nodemon ./bin/www"
   },
   "dependencies": {
     "bcrypt": "^1.0.2",
