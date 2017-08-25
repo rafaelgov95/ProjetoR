@@ -18,6 +18,7 @@ module.exports = (Schema, Banco) => {
         Actions.buscar = (req, res) => {
             const query = req.query;
             model.findOne(query, (err, data) => {
+                console.log(err),                
                 callback(err, data, res)
             });
         },
@@ -39,7 +40,6 @@ module.exports = (Schema, Banco) => {
         Actions.update = (req, res) => {
             const body = req.body
             const query = req.query
-            console.log('body:',body,'\n','query:',query)
             model.update(query, body, (err, data) => {
                 callback(err, data, res)
             });
