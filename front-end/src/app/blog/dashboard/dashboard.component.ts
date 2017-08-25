@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit {
     console.log("Vai avisodo")
   }
   ngOnInit() {
-    this.inscricao = this.servicePost.getPosts(this.autor).subscribe(data => this.Posts = Array.of(data) , erro => console.log('Erro'));
+    this.inscricao = this.servicePost.getPosts(this.autor).subscribe(data => this.Posts = data, erro => console.log('Erro'));
     
     this.servicePost.emitterDelivery.subscribe((post:any) => {
       let pos = this.Posts.indexOf(this.Posts.find(item => item._id === post._id));
