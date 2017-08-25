@@ -27,19 +27,14 @@ export class PostsComponent implements OnInit {
   }
   ngOnInit() {
 
-    this.inscricao = this.router.params.subscribe(data => {
-    this.id = data['id'], console.log(this.id)
-
-
-    this.servicoPost.getPost(this.id).subscribe(data => {
-        console.log(data)
-        // if(data!=null)
-        //  this.post = data
-      }  
-        , err => { this.route.navigate(['/']), console.log('erro') })
-
+    this.inscricao = this.inscricao = this.router.params.subscribe(data => {
+      this.id = data['id'], console.log(this.id)
     }, err => console.log("erro"))
 
+    this.subpost = this.servicoPost.getPost(this.id).subscribe(data => {
+      this.post = data
+    }
+      , err => {  console.log('erro') })
   }
   ngOnDestroy() {
     this.subpost.unsubscribe();
