@@ -14,8 +14,8 @@ export class ServicePost {
   params: URLSearchParams;
 
   token: string;
-    Url:string='http://localhost:3000/';
-    // Url:string='/';
+    // Url:string='http://localhost:3000/';
+    Url:string='/';
 
   constructor(private http: Http) {
 
