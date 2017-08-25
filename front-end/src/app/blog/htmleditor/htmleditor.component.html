@@ -14,8 +14,7 @@
         </div>
     </div>
     <!-- <input type="text" [formControl]="HtmlEditor.controls['texto']" > -->
-    <ckeditor id="description" name="description" placeholder="Album Description" [formControl]="HtmlEditor.controls['texto']"
-        debounce="500" required>
+    <ckeditor     [formControl]="HtmlEditor.controls['texto']" debounce="500" required>
     </ckeditor>
     <button [disabled]="!HtmlEditor.valid" type="submit" class="btn btn-warning btn-lg btn-block" *ngIf="editar==true">Update Mensagem</button>
 
@@ -26,4 +25,5 @@
 <button  class="btn btn-secondary btn-lg btn-block" (click)="esconder=!esconder" *ngIf="esconder==true && HtmlEditor.controls['texto'].value!=undefined">Esconder Mensagem</button>
 <button  class="btn btn-secondary btn-lg btn-block" (click)="esconder=!esconder" *ngIf="esconder==false && HtmlEditor.controls['texto'].value!=''">Mostrar Mensagem</button>
 <br><br><br>
-<div [innerHTML]="HtmlEditor.controls['texto'].value" *ngIf="HtmlEditor.controls['texto'].value!=undefined && esconder!=false"></div>
+<div [innerHtml]="HtmlEditor.controls['texto'].value | safeHtml" *ngIf="HtmlEditor.controls['texto'].value!=undefined && HtmlEditor.controls['texto'].value!='' && esconder!=false"></div>
+

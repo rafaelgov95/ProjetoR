@@ -1,12 +1,14 @@
+
 import { EmitterDelivery } from './../../shared/services/EmitterDelivery/EmitterDelivery';
 import { ServicePost } from './../../shared/services/posts/ServicePost';
 import { Post } from './../../shared/models/post';
-import { Component, Input, Output, forwardRef, OnInit, EventEmitter } from '@angular/core';
+import { Component, Input, Output, forwardRef, OnInit, EventEmitter,ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 @Component({
   selector: 'htmleditor-component',
-  templateUrl: 'htmleditor.component.html'
-
+  templateUrl: 'htmleditor.component.html',
+  encapsulation: ViewEncapsulation.None,
+  
 })
 export class HtmleditorComponent implements OnInit {
   post: Post;
