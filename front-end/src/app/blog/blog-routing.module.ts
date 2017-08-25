@@ -1,3 +1,4 @@
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { PostsComponent } from './posts/posts.component';
 import { BlogComponent } from './blog.component';
 
@@ -6,8 +7,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
     { path: '', component: BlogComponent },
-    { path: 'post/:id', component: PostsComponent }
-            
+    { path: 'post/:id', component: PostsComponent },
+    { path: 'dashboard', component: DashboardComponent }
+    
           
 ];
 

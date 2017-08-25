@@ -14,8 +14,8 @@ export class ServicePost {
   params: URLSearchParams;
 
   token: string;
-    // Url:string='http://localhost:3000/';
-    Url:string='/';
+    Url:string='http://localhost:3000/';
+    // Url:string='/';
 
   constructor(private http: Http) {
 
@@ -30,10 +30,18 @@ export class ServicePost {
     }
   }
 
+  // getPostAll(autor:string): Observable<Post[]> {
+  //   return this.http.get(this.Url + 'api/posts/buscar?autor='+autor).map((response: Response) => response.json());
+  // }
   getAll(): Observable<Post[]> {
     return this.http.get(this.Url + 'api/posts/listar').map((response: Response) => response.json());
   }
-
+  getPosts(nome: string): Observable<Post[]> {
+    this.params.set('autor', nome);
+    let options = new RequestOptions({ headers: this.headers, params: this.params });
+    return this.http.get(this.Url + 'api/posts/buscar', options)
+      .map((response: Response) => response.json());
+  }
   getPost(id: string): Observable<Post> {
     this.params.set('_id', id);
     let options = new RequestOptions({ headers: this.headers, params: this.params });

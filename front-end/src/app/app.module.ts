@@ -1,3 +1,4 @@
+import { SafeHtmlPipe } from './shared/pipes/htmlview';
 import { HeaderComponent } from './shared/components/header/header.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +21,7 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     FormsModule, 
     ReactiveFormsModule,
+    
   
   ], exports: [   
     BrowserAnimationsModule

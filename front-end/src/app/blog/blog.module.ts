@@ -1,12 +1,12 @@
+import { PipesModule } from './../shared/pipes/pipes-module';
 import { SafeHtmlPipe } from './../shared/pipes/htmlview';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 
 import { RouterModule,Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {CKEditorModule} from '../../../node_modules/ng2-ckeditor/src/index';
-import { HtmleditorComponent } from './htmleditor/htmleditor.component';
 import { PostsComponent } from './posts/posts.component';
 import { BlogRoutingModule } from './blog-routing.module';
 import { BlogComponent } from './blog.component';
@@ -20,10 +20,12 @@ import { ServicePost } from './../shared/services/posts/ServicePost';
     BlogRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    CKEditorModule
+    DashboardModule,
+    PipesModule
+   
   ],
-  declarations: [BlogComponent, PostsComponent, HtmleditorComponent,SafeHtmlPipe],
+  declarations: [BlogComponent, PostsComponent],
   providers: [ServicePost],
-  exports: [BlogComponent, HtmleditorComponent,CKEditorModule]
+  exports: [DashboardModule,PipesModule]
 })
 export class BlogModule { }
