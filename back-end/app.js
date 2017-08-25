@@ -32,7 +32,7 @@ app.use('/api/login', login)
 app.use('/api/autentica', valida_login) // autentica
 app.use('/api/posts', posts) // postagens do blog
 
-app.use('*',function (req, res) {
+app.use('/*',function (req, res) {
     res.status(404).sendFile(__dirname + './public/index.html');
 });
 app.use(function (err, req, res, next) {
