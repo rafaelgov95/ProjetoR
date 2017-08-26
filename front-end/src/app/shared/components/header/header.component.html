@@ -24,15 +24,15 @@
         <ul class="nav navbar-nav navbar-right" >
           <!-- <li><p class="navbar-text">Already have an account?</p></li> -->
           <li class="dropdown" *ngIf="logado==false">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user-o" aria-hidden="true"></span>{{nome}} <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user-o" aria-hidden="true">&nbsp;</span>{{nome}} <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a [routerLink]="['dashboard']"><span class="fa fa-tachometer" aria-hidden="true"></span>Dashboard</a></li>
+              <li><a [routerLink]="['dashboard']"><span class="fa fa-tachometer" aria-hidden="true">&nbsp;</span>Dashboard</a></li>
               <li role="separator" class="divider"></li>
-              <li><a (click)='logout()'><span class="fa fa-power-off" aria-hidden="true"></span>Logout</a></li>
+              <li><a (click)='logout()'><span class="fa fa-power-off" aria-hidden="true">&nbsp;</span>Logout</a></li>
             </ul>
           </li>
           <li class="dropdown" *ngIf="logado==true">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-user-circle" ></span><b>Login</b> <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-user-circle" >&nbsp;</span><b>Login</b> <span class="caret"></span></a>
             <ul id="login-dp" class="dropdown-menu">
               <li>
                 <div class="row">

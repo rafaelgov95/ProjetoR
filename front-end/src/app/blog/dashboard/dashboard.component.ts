@@ -2,7 +2,8 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { Post } from './../../shared/models/post';
 import { ServicePost } from './../../shared/services/posts/ServicePost';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewContainerRef} from '@angular/core';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,8 +17,9 @@ export class DashboardComponent implements OnInit {
   Posts: any;
   editarPost: Post
   inscricao: Subscription;
-  constructor(private servicePost: ServicePost, private router: Router) {
-
+  constructor(private servicePost: ServicePost, private router: Router, public toastr: ToastsManager, vcr: ViewContainerRef) {
+    this.toastr.setRootViewContainerRef(vcr);
+    
     if (localStorage.getItem('currentUser')) {
       this.autor = JSON.parse(localStorage.getItem('currentUser'))['nome'];
       this.adicionarPost = false;
@@ -25,7 +27,23 @@ export class DashboardComponent implements OnInit {
       this.adicionarPost = true;
     }
   }
+  UpdateShowSuccess() {
+    this.toastr.success('Post Atualizado !', 'Sucesso!');
+  }
+  AdicionadoShowSuccess() {
+    this.toastr.success('Post Adicionado !', 'Sucesso!');
+  }
+  RemoveShowSuccess() {
+    this.toastr.success('Post Removido !', 'Sucesso!');
+  }
 
+  showError() {
+    this.toastr.success('This is not good!', 'Oops!');
+  }
+
+  showWarning() {
+    this.toastr.warning('You are being warned.', 'Alert!');
+  }
 
   Editar(post: Post) {
     console.log("Estou enviando isso:",post)
@@ -44,9 +62,10 @@ export class DashboardComponent implements OnInit {
     this.servicePost.emitterDelivery.subscribe((post:any) => {
       let pos = this.Posts.indexOf(this.Posts.find(item => item._id === post._id));
       if (pos > -1){
+        this.UpdateShowSuccess();
         this.Posts[pos]=post
       } else {
-        console.log(post)
+        this.AdicionadoShowSuccess();
         this.Posts.push(post);
       }
 
@@ -58,6 +77,6 @@ export class DashboardComponent implements OnInit {
   }
   Remove(post: Post) {
     this.servicePost.remove(post)
-      .subscribe(data => { this.Posts.splice(this.Posts.indexOf(post), 1), console.log(post) }, err => console.log(err));
+      .subscribe(data => { this.Posts.splice(this.Posts.indexOf(post), 1), console.log(post),this.RemoveShowSuccess() }, err => console.log(err));
   }
 }

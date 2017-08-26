@@ -2,18 +2,17 @@ import { EmitterDelivery } from './../../../shared/services/EmitterDelivery/Emit
 import { ServicePost } from './../../../shared/services/posts/ServicePost';
 import { Post } from './../../../shared/models/post';
 
-
-import { Component, Input, Output, forwardRef, OnInit, EventEmitter } from '@angular/core';
+import { Component, Input, Output, forwardRef, OnInit, EventEmitter, ViewContainerRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
   selector: 'htmleditor-component',
   templateUrl: 'htmleditor.component.html'
-  
+
 })
 export class HtmleditorComponent implements OnInit {
   post: Post;
-  teste 
+  teste
   id: string;
   autor: string
   HtmlEditor: FormGroup;
@@ -21,21 +20,19 @@ export class HtmleditorComponent implements OnInit {
   editar = false;
   @Output() AvisaPai = new EventEmitter();
   @Input() editarPost;
-  constructor(private fb: FormBuilder,
-
-    private servicePost: ServicePost) {
-
+  constructor(private fb: FormBuilder, private servicePost: ServicePost) {
+    // this.toastr.setRootViewContainerRef(vcr);
     if (localStorage.getItem('currentUser')) {
       this.autor = JSON.parse(localStorage.getItem('currentUser'))['nome']
     }
 
     this.post = new Post('', '', '', this.autor, new Date());
-    
+
   }
   ngOnChanges(event) {
     if (this.editarPost != undefined) {
       this.post = this.editarPost
-      this.teste = this.post.texto      
+      this.teste = this.post.texto
       console.log("Editar:", this.post)
       this.buildForm();
       // this.esconder=true 
@@ -63,8 +60,8 @@ export class HtmleditorComponent implements OnInit {
       }, err => console.log("Erro"))
 
     } else {
-      this.servicePost.create(post).subscribe(data =>
-        this.servicePost.emitterDelivery.emit(data),
+      this.servicePost.create(post).subscribe(data =>{
+        this.servicePost.emitterDelivery.emit(data)},
         err => console.log("Erro"))
 
     }
@@ -82,7 +79,7 @@ export class HtmleditorComponent implements OnInit {
   }
 
   buildForm(): void {
-    console.log('build',this.post.texto)
+    console.log('build', this.post.texto)
     this.HtmlEditor = this.fb.group({
       'titulo': [this.post.titulo, [Validators.required, Validators.minLength, Validators.maxLength]],
       'resumo': [this.post.resumo, [Validators.required, Validators.minLength, Validators.maxLength]],
@@ -93,7 +90,7 @@ export class HtmleditorComponent implements OnInit {
 
     this.HtmlEditor.valueChanges
       .subscribe(data => this.onValueChanged(data));
-      
+
     this.onValueChanged();
   }
 
@@ -101,7 +98,7 @@ export class HtmleditorComponent implements OnInit {
   onValueChanged(data?: any) {
     if (!this.HtmlEditor) { return; }
     const form = this.HtmlEditor;
-    
+
     for (const field in this.formErrors) {
       this.formErrors[field] = '';
       const control = form.get(field);
