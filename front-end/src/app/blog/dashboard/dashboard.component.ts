@@ -36,7 +36,9 @@ export class DashboardComponent implements OnInit {
   RemoveShowSuccess() {
     this.toastr.success('Post Removido !', 'Sucesso!');
   }
-
+  CanceladoShowSuccess() {
+    this.toastr.warning('Post Cancelado !', 'Sucesso!');
+  }
   showError() {
     this.toastr.success('This is not good!', 'Oops!');
   }
@@ -54,7 +56,8 @@ export class DashboardComponent implements OnInit {
   CancelarEditar() {
     this.editarPost = null;
     this.editar = false;
-    console.log("Vai avisodo")
+    console.log("Vai avisado")
+    this.CanceladoShowSuccess()
   }
   ngOnInit() {
     this.inscricao = this.servicePost.getPosts(this.autor).subscribe(data => this.Posts = data, erro => console.log('Erro'));
