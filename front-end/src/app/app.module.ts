@@ -1,3 +1,4 @@
+import { CustomOption } from './shared/components/toast/ng2-toast-config';
 import { SafeHtmlPipe } from './shared/pipes/htmlview';
 import { HeaderComponent } from './shared/components/header/header.component';
 
@@ -10,24 +11,27 @@ import { Http, HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './shared';
 import { AppComponent } from './app.component';
-import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { ToastOptions } from 'ng2-toastr';
 
+ToastOptions
 @NgModule({
   declarations: [
-    AppComponent,HeaderComponent],
+    AppComponent, HeaderComponent],
   imports: [
     HttpModule,
     AppRoutingModule,
-    BrowserModule, 
+    BrowserModule,
     BrowserAnimationsModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
-    ToastModule.forRoot()    
-  
-  ], exports: [   
-    BrowserAnimationsModule  ],
+    ToastModule.forRoot()
+
+  ], exports: [
+    BrowserAnimationsModule],
   providers: [
-    AuthGuard
+    AuthGuard,
+    { provide: ToastOptions, useClass: CustomOption },
   ],
   bootstrap: [AppComponent]
 })

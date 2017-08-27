@@ -44,9 +44,7 @@ export class HtmleditorComponent implements OnInit {
   cancelar() {
     this.editar = false;
     this.post = new Post('', '', '', this.autor, new Date());
-
     this.HtmlEditor.reset();
-
     this.buildForm();
     this.AvisaPai.emit()
   }
@@ -69,8 +67,6 @@ export class HtmleditorComponent implements OnInit {
     this.post = new Post('', '', '', this.autor, new Date());
     this.buildForm();
     this.editar = false;
-    console.log("Submetido:", post)
-    this.AvisaPai.emit()
   }
 
   ngOnInit() {
