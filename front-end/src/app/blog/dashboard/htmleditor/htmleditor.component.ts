@@ -60,7 +60,7 @@ export class HtmleditorComponent implements OnInit {
       }, err => console.log("Erro"))
 
     } else {
-      this.desativa = this.servicePost.create(post).subscribe(data => {
+     this.servicePost.create(post).subscribe(data => {
         this.servicePost.emitterDelivery.emit(data)
       },
         err => console.log("Erro"))
@@ -77,7 +77,7 @@ export class HtmleditorComponent implements OnInit {
 
   }
   ngOnDestroy() {
-    this.desativa.unsubscribe();
+
   }
   buildForm(): void {
     console.log('build', this.post.texto)

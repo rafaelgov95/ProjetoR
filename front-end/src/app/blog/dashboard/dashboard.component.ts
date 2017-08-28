@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
   Posts: any;
   editarPost: Post
 
-  remover: Subscription;
+
   inscricao: Subscription;
   constructor(private dialogsService: DialogsService, private servicePost: ServicePost, private router: Router, public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
       .subscribe(res => {
         this.result = res
         if (this.result == true) {
-          this.remover = this.servicePost.remove(post)
+     this.servicePost.remove(post)
             .subscribe(data => { this.Posts.splice(this.Posts.indexOf(post), 1), console.log(post), this.RemoveShowSuccess() }, err => console.log(err));
         } else {
           this.CanceladoshowRemoverPost()
@@ -89,7 +89,7 @@ export class DashboardComponent implements OnInit {
   @ViewChild(MdPaginator) paginator: MdPaginator;
 
   ngOnInit() {
-    this.inscricao = this.servicePost.getPosts(this.autor).subscribe(data => this.Posts = data, erro => console.log('Erro'));
+    this.inscricao = this.servicePost.getPosts("{}").subscribe(data => this.Posts = data, erro => console.log('Erro'));
     this.servicePost.emitterDelivery.subscribe((post: any) => {
       let pos = this.Posts.indexOf(this.Posts.find(item => item._id === post._id));
       if (pos > -1) {
@@ -105,11 +105,7 @@ export class DashboardComponent implements OnInit {
 
   }
   ngOnDestroy() {
-    if(this.remover.unsubscribe!=undefined){
-      this.remover.unsubscribe();
-    }else{
-      console.log("ediferente")
-    }
+  
     this.inscricao.unsubscribe();
   }
 
