@@ -1,8 +1,6 @@
 import { PipesModule } from './../shared/pipes/pipes-module';
 import { SafeHtmlPipe } from './../shared/pipes/htmlview';
 import { DashboardModule } from './dashboard/dashboard.module';
-
-
 import { RouterModule,Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';

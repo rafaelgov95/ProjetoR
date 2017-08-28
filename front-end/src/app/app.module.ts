@@ -13,7 +13,7 @@ import { Http, HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './shared';
 import { AppComponent } from './app.component';
-import { ToastModule, ToastOptions } from 'ng2-toastr';
+
 
 @NgModule({
   declarations: [
@@ -25,14 +25,11 @@ import { ToastModule, ToastOptions } from 'ng2-toastr';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastModule.forRoot(),
+
     
   ], exports: [
     BrowserAnimationsModule ],
-  providers: [
-    AuthGuard,
-    { provide: ToastOptions, useClass: CustomOption },
-  ],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
