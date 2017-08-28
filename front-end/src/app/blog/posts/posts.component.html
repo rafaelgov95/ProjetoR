@@ -1,51 +1,52 @@
-    <header class="masthead" >
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 col-md-10 mx-auto">
-            <div class="post-heading">
-              <h1>{{post.titulo}}</h1>
-              <h2 class="subheading">{{post.resumo}}</h2>
-              <span class="meta">Postado por
+<header class="masthead">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-10 mx-auto">
+        <div class="post-heading">
+          <h1>{{post.titulo}}</h1>
+          <h2 class="subheading">{{post.resumo}}</h2>
+          <span class="meta">Postado por
                 <a href="#">{{post.autor}}</a>
-                em {{post.criada_em | date:'medium'}}</span> 
-            </div>
-          </div>
+                em {{post.criada_em | date:'medium'}}</span>
         </div>
       </div>
-    </header>
+    </div>
+  </div>
+</header>
 
-    <!-- Post Content -->
-    <article>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 col-md-10 mx-auto" >              
-           <div [innerHTML]="post.texto | safeHtml" ></div> 
-          </div>
-        </div>
+<!-- Post Content -->
+<article>
+  <div name="nome" class="col-md-12">
+    <div class="row ">
+      <div class="col-lg-1"> </div>
+      <div class="col-lg-10">
+        <div [innerHTML]="post.texto | safeHtml"></div>
       </div>
-    </article>
+      <div class="col-lg-1"> </div>
+    </div>
+  </div>
+</article>
 
-    <hr>
+<hr>
 
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 col-md-10 mx-auto">
-            <ul class="list-inline text-center">
-         
-              <li class="list-inline-item">
-                <a href="https://github.com/rafaelgov95/robotica"  target="resource window">
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+
+          <li class="list-inline-item">
+            <a href="https://github.com/rafaelgov95/robotica" target="resource window">
                   <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
-              </li>
-            </ul>
-            <p class="copyright text-muted">Copyright &copy; Coxim Robótica 2017</p>
-          </div>
-        </div>
+          </li>
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; Coxim Robótica 2017</p>
       </div>
-    </footer>
-    
+    </div>
+  </div>
+</footer>
