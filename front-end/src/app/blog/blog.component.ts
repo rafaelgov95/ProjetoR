@@ -15,7 +15,14 @@ export class BlogComponent implements OnInit {
   constructor(private servicePost: ServicePost, private router: Router) {
 
   }
-  // LOGO = { 'background': 'url(./assets/img/logo.jpg) center center / cover no-repeat' }
+  LOGO = {
+    'background': 'url(./assets/img/back3.jpg)  ',
+    'width': '100%',
+    'background-attachment': 'fixed',
+    'background-position': 'center',
+    'background-repeat': 'no-repeat',
+    'background-size': 'cover'
+  }
 
   ngOnInit() {
     this.inscricao = this.servicePost.getAll().subscribe(data => this.Posts = data, erro => console.log('Erro'));
