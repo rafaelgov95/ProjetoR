@@ -13,11 +13,8 @@
             {{ formErrors.resumo}}
         </div>
     </div>
-    <!-- <input type="text" [formControl]="HtmlEditor.controls['texto']" > -->
-    <ckeditor     [formControl]="HtmlEditor.controls['texto']" debounce="500" required>
-    </ckeditor>
+    <ckeditor [formControl]="HtmlEditor.controls['texto']" debounce="500" required> </ckeditor>
     <button [disabled]="!HtmlEditor.valid" type="submit" class="btn btn-warning btn-lg btn-block" *ngIf="editar==true">Update Mensagem</button>
-
     <button [disabled]="!HtmlEditor.valid" type="submit" class="btn btn-success btn-lg btn-block" *ngIf="editar==false">Enviar Mensagem</button>
 </form>
 <button (click)="cancelar()" class="btn btn-danger btn-lg btn-block" *ngIf="editar==true">Cancelar</button>

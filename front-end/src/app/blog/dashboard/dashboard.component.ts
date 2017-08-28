@@ -4,12 +4,12 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { Post } from './../../shared/models/post';
 import { ServicePost } from './../../shared/services/posts/ServicePost';
-import { Component, OnInit,ViewChild, ViewContainerRef, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, TemplateRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import {DataSource} from '@angular/cdk';
-import {MdPaginator} from '@angular/material';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Observable} from 'rxjs/Observable';
+import { DataSource } from '@angular/cdk';
+import { MdPaginator } from '@angular/material';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 //-- Paginetor
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
@@ -27,6 +27,8 @@ export class DashboardComponent implements OnInit {
   editar = false;
   Posts: any;
   editarPost: Post
+
+  remover: Subscription;
   inscricao: Subscription;
   constructor(private dialogsService: DialogsService, private servicePost: ServicePost, private router: Router, public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
@@ -44,7 +46,7 @@ export class DashboardComponent implements OnInit {
       .subscribe(res => {
         this.result = res
         if (this.result == true) {
-          this.servicePost.remove(post)
+          this.remover =    this.servicePost.remove(post)
             .subscribe(data => { this.Posts.splice(this.Posts.indexOf(post), 1), console.log(post), this.RemoveShowSuccess() }, err => console.log(err));
         } else {
           this.CanceladoshowRemoverPost()
@@ -103,6 +105,7 @@ export class DashboardComponent implements OnInit {
 
   }
   ngOnDestroy() {
+    this.remover.unsubscribe(); 
     this.inscricao.unsubscribe();
   }
 

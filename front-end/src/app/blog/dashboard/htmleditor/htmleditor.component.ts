@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs/Rx';
 import { EmitterDelivery } from './../../../shared/services/EmitterDelivery/EmitterDelivery';
 import { ServicePost } from './../../../shared/services/posts/ServicePost';
 import { Post } from './../../../shared/models/post';
@@ -17,6 +18,7 @@ export class HtmleditorComponent implements OnInit {
   autor: string
   HtmlEditor: FormGroup;
   esconder = false;
+  desativa: Subscription;
   editar = false;
   @Output() AvisaPai = new EventEmitter();
   @Input() editarPost;
@@ -53,13 +55,14 @@ export class HtmleditorComponent implements OnInit {
   onSubmit(post: Post) {
     if (this.editar) {
       post._id = this.post._id;
-      this.servicePost.updatePost(post).subscribe(data => {
+      this.desativa = this.servicePost.updatePost(post).subscribe(data => {
         this.servicePost.emitterDelivery.emit(post)
       }, err => console.log("Erro"))
 
     } else {
-      this.servicePost.create(post).subscribe(data =>{
-        this.servicePost.emitterDelivery.emit(data)},
+      this.desativa = this.servicePost.create(post).subscribe(data => {
+        this.servicePost.emitterDelivery.emit(data)
+      },
         err => console.log("Erro"))
 
     }
@@ -73,7 +76,9 @@ export class HtmleditorComponent implements OnInit {
     this.buildForm();
 
   }
-
+  ngOnDestroy() {
+    this.desativa.unsubscribe();
+  }
   buildForm(): void {
     console.log('build', this.post.texto)
     this.HtmlEditor = this.fb.group({
