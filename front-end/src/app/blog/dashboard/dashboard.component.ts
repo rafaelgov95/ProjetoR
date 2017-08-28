@@ -1,7 +1,5 @@
 import { DialogsService } from './../../shared/dialog/dialogs.service';
-import { ModalContentComponent } from './../../shared/components/confirmacao/confirmacao';
 import { CustomOption } from './../../shared/components/toast/ng2-toast-config';
-
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { Post } from './../../shared/models/post';
@@ -87,6 +85,7 @@ export class DashboardComponent implements OnInit {
     this.CanceladoShowSuccess()
   }
   @ViewChild(MdPaginator) paginator: MdPaginator;
+
   ngOnInit() {
     this.inscricao = this.servicePost.getPosts(this.autor).subscribe(data => this.Posts = data, erro => console.log('Erro'));
     this.servicePost.emitterDelivery.subscribe((post: any) => {
