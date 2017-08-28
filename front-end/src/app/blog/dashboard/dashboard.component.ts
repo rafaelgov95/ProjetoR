@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
       .subscribe(res => {
         this.result = res
         if (this.result == true) {
-          this.remover =    this.servicePost.remove(post)
+          this.remover = this.servicePost.remove(post)
             .subscribe(data => { this.Posts.splice(this.Posts.indexOf(post), 1), console.log(post), this.RemoveShowSuccess() }, err => console.log(err));
         } else {
           this.CanceladoshowRemoverPost()
@@ -105,7 +105,11 @@ export class DashboardComponent implements OnInit {
 
   }
   ngOnDestroy() {
-    this.remover.unsubscribe(); 
+    if(this.remover.unsubscribe!=undefined){
+      this.remover.unsubscribe();
+    }else{
+      console.log("ediferente")
+    }
     this.inscricao.unsubscribe();
   }
 
