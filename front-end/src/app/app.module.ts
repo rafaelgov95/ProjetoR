@@ -25,8 +25,6 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-
-    
   ], exports: [
     BrowserAnimationsModule ],
   providers: [AuthGuard],
