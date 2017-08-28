@@ -1,3 +1,4 @@
+import { MaterialModule } from '@angular/material';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { CustomOption } from './shared/components/toast/ng2-toast-config';
 import { SafeHtmlPipe } from './shared/pipes/htmlview';
@@ -24,8 +25,8 @@ import { ToastModule, ToastOptions } from 'ng2-toastr';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastModule.forRoot()
-
+    ToastModule.forRoot(),
+    
   ], exports: [
     BrowserAnimationsModule ],
   providers: [
