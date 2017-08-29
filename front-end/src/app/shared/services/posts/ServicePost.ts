@@ -39,7 +39,7 @@ export class ServicePost {
   getPosts(nome: string): Observable<Post[]> {
     // this.params.set('autor', nome);
     let options = new RequestOptions({ headers: this.headers, params: this.params });
-    return this.http.get(this.Url + 'api/posts/listar', options)
+    return this.http.get(this.Url + 'api/posts/listar')
       .map((response: Response) => response.json());
   }
   getPost(id: string): Observable<Post> {
