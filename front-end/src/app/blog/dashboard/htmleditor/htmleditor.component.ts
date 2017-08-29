@@ -28,7 +28,7 @@ export class HtmleditorComponent implements OnInit {
       this.autor = JSON.parse(localStorage.getItem('currentUser'))['nome']
     }
 
-    this.post = new Post('', '', '', this.autor, new Date());
+    this.post = new Post('', '', '','', this.autor, new Date());
 
   }
   ngOnChanges(event) {
@@ -45,7 +45,7 @@ export class HtmleditorComponent implements OnInit {
 
   cancelar() {
     this.editar = false;
-    this.post = new Post('', '', '', this.autor, new Date());
+    this.post = new Post('', '', '','', this.autor, new Date());
     this.HtmlEditor.reset();
     this.buildForm();
     this.AvisaPai.emit()
@@ -67,7 +67,7 @@ export class HtmleditorComponent implements OnInit {
 
     }
     this.HtmlEditor.reset()
-    this.post = new Post('', '', '', this.autor, new Date());
+    this.post = new Post('', '', '','', this.autor, new Date());
     this.buildForm();
     this.editar = false;
   }
@@ -84,6 +84,7 @@ export class HtmleditorComponent implements OnInit {
     this.HtmlEditor = this.fb.group({
       'titulo': [this.post.titulo, [Validators.required, Validators.minLength, Validators.maxLength]],
       'resumo': [this.post.resumo, [Validators.required, Validators.minLength, Validators.maxLength]],
+      'imagen': [this.post.imagen, [Validators.required, Validators.minLength]],
       'texto': [this.post.texto, [Validators.required, Validators.minLength]],
       'autor': [this.post.autor, [Validators.required]],
       'criada_em': [this.post.criada_em]
@@ -116,6 +117,7 @@ export class HtmleditorComponent implements OnInit {
   formErrors = {
     'titulo': '',
     'resumo': '',
+    'imagen': '',
     'texto': ''
   };
 
@@ -134,7 +136,10 @@ export class HtmleditorComponent implements OnInit {
     'texto': {
       'required': 'Texto Requerido',
       'minlength': 'Texto tem que possuir mais de 120 caracteres'
-    }
+    },
+    'imagen': {
+      'required': 'Imagen Requerido'
+        }
   };
 
 

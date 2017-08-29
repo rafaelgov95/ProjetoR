@@ -6,6 +6,7 @@ export class Post {
   constructor(
     public titulo: string,
     public resumo: string,
+    public imagen: string,
     public texto: string,
     public autor: string,
     public criada_em: Date

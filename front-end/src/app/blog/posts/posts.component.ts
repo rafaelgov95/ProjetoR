@@ -14,11 +14,11 @@ export class PostsComponent implements OnInit {
   post: Post;
   inscricao: Subscription;
   subpost: Subscription;
+  LOGO
 
   constructor(private router: ActivatedRoute, private route: Router, private servicoPost: ServicePost) {
-    this.post = new Post('', '', '', '', new Date);
-
-
+    this.post = new Post('', '', '', '', '', new Date);
+ 
   }
   ngOnChanges(changes: any) {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
@@ -32,9 +32,19 @@ export class PostsComponent implements OnInit {
     }, err => console.log("erro"))
 
     this.subpost = this.servicoPost.getPost(this.id).subscribe(data => {
+      console.log(data)
       this.post = data
+      this.LOGO = {
+        'background': 'url(' + this.post.imagen + ')  ',
+        'width': '100%',
+        'background-attachment': 'fixed',
+        'background-position': 'center',
+        'background-repeat': 'no-repeat',
+        'background-size': 'cover'
+      }
+      console.log(this.post)
     }
-      , err => {  console.log('erro') })
+      , err => { console.log('erro') })
   }
   ngOnDestroy() {
     this.subpost.unsubscribe();

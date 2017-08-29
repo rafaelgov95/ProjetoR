@@ -13,6 +13,13 @@
             {{ formErrors.resumo}}
         </div>
     </div>
+    <div class="form-group" [ngClass]="{' has-success':!formErrors.imagen,'has-danger':formErrors.imagen}">
+        <label class="form-control-label" for="inputSuccess">Imagen</label>
+        <input type="text" class="form-control" formControlName="imagen" id="inputSuccess" [ngClass]="{'form-control-success':!formErrors.imagen,'form-control-danger':formErrors.imagen}">
+        <div *ngIf="formErrors.resumo" class="alert alert-danger">
+            {{ formErrors.imagen}}
+        </div>
+    </div>
     <ckeditor [formControl]="HtmlEditor.controls['texto']" debounce="500" required> </ckeditor>
     <button [disabled]="!HtmlEditor.valid" type="submit" class="btn btn-warning btn-lg btn-block" *ngIf="editar==true">Update Mensagem</button>
     <button [disabled]="!HtmlEditor.valid" type="submit" class="btn btn-success btn-lg btn-block" *ngIf="editar==false">Enviar Mensagem</button>
