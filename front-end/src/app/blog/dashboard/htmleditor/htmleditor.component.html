@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="form-group" [ngClass]="{' has-success':!formErrors.imagen,'has-danger':formErrors.imagen}">
-        <label class="form-control-label" for="inputSuccess">Imagen</label>
+        <label class="form-control-label" for="inputSuccess">Imagen Url</label>
         <input type="text" class="form-control" formControlName="imagen" id="inputSuccess" [ngClass]="{'form-control-success':!formErrors.imagen,'form-control-danger':formErrors.imagen}">
         <div *ngIf="formErrors.resumo" class="alert alert-danger">
             {{ formErrors.imagen}}
