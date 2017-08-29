@@ -22,22 +22,35 @@ export class HtmleditorComponent implements OnInit {
   editar = false;
   @Output() AvisaPai = new EventEmitter();
   @Input() editarPost;
+
+  entries = [];
+  selectedEntry: { [key: string]: any } = {
+    value: null,
+    description: null
+  };
   constructor(private fb: FormBuilder, private servicePost: ServicePost) {
     // this.toastr.setRootViewContainerRef(vcr);
     if (localStorage.getItem('currentUser')) {
       this.autor = JSON.parse(localStorage.getItem('currentUser'))['nome']
     }
 
-    this.post = new Post('', '', '','', this.autor, new Date());
-
+    this.post = new Post('', '', '', '', this.autor, true, new Date());
+    this.entries = [
+      {
+        description: 'Desenvolvimento',
+        value: true
+      },
+      {
+        description: 'Produção',
+        value: false
+      }
+    ];
   }
   ngOnChanges(event) {
     if (this.editarPost != undefined) {
       this.post = this.editarPost
       this.teste = this.post.texto
-      console.log("Editar:", this.post)
       this.buildForm();
-      // this.esconder=true 
       this.editar = true;
     }
 
@@ -45,7 +58,7 @@ export class HtmleditorComponent implements OnInit {
 
   cancelar() {
     this.editar = false;
-    this.post = new Post('', '', '','', this.autor, new Date());
+    this.post = new Post('', '', '', '', this.autor, true, new Date());
     this.HtmlEditor.reset();
     this.buildForm();
     this.AvisaPai.emit()
@@ -60,22 +73,22 @@ export class HtmleditorComponent implements OnInit {
       }, err => console.log("Erro"))
 
     } else {
-     this.servicePost.create(post).subscribe(data => {
+      this.servicePost.create(post).subscribe(data => {
         this.servicePost.emitterDelivery.emit(data)
       },
         err => console.log("Erro"))
 
     }
     this.HtmlEditor.reset()
-    this.post = new Post('', '', '','', this.autor, new Date());
+    this.post = new Post('', '', '', '', this.autor, true, new Date());
     this.buildForm();
     this.editar = false;
   }
 
   ngOnInit() {
     this.buildForm();
-
   }
+
   ngOnDestroy() {
 
   }
@@ -86,6 +99,7 @@ export class HtmleditorComponent implements OnInit {
       'resumo': [this.post.resumo, [Validators.required, Validators.minLength, Validators.maxLength]],
       'imagen': [this.post.imagen, [Validators.required, Validators.minLength]],
       'texto': [this.post.texto, [Validators.required, Validators.minLength]],
+      'dev': [this.post.dev, [Validators.required]],
       'autor': [this.post.autor, [Validators.required]],
       'criada_em': [this.post.criada_em]
     });
@@ -100,7 +114,7 @@ export class HtmleditorComponent implements OnInit {
   onValueChanged(data?: any) {
     if (!this.HtmlEditor) { return; }
     const form = this.HtmlEditor;
-
+    console.log(form)
     for (const field in this.formErrors) {
       this.formErrors[field] = '';
       const control = form.get(field);
@@ -139,7 +153,7 @@ export class HtmleditorComponent implements OnInit {
     },
     'imagen': {
       'required': 'Imagen Requerido'
-        }
+    }
   };
 
 

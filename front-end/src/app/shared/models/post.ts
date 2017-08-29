@@ -9,6 +9,7 @@ export class Post {
     public imagen: string,
     public texto: string,
     public autor: string,
+    public dev: boolean,
     public criada_em: Date
   ) { }
 

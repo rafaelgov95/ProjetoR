@@ -20,14 +20,31 @@
             {{ formErrors.imagen}}
         </div>
     </div>
+    <div>
+        <table>
+            <thead>
+                              
+            </thead>
+            <tbody>
+                <tr *ngFor="let entry of entries; let idx = index">
+                    <td>{{ entry.description }}&nbsp;<br></td>
+                
+                    <td><input type="radio" formControlName="dev" [checked]="(idx === 0)"[value]="entry.value"></td>
+                    
+                </tr>
+
+            </tbody>
+        </table>
+
+        <hr>
+    </div>
     <ckeditor [formControl]="HtmlEditor.controls['texto']" debounce="500" required> </ckeditor>
     <button [disabled]="!HtmlEditor.valid" type="submit" class="btn btn-warning btn-lg btn-block" *ngIf="editar==true">Update Mensagem</button>
     <button [disabled]="!HtmlEditor.valid" type="submit" class="btn btn-success btn-lg btn-block" *ngIf="editar==false">Enviar Mensagem</button>
 </form>
 <button (click)="cancelar()" class="btn btn-danger btn-lg btn-block" *ngIf="editar==true">Cancelar</button>
 
-<button  class="btn btn-secondary btn-lg btn-block" (click)="esconder=!esconder" *ngIf="esconder==true && HtmlEditor.controls['texto'].value!=undefined">Esconder Mensagem</button>
-<button  class="btn btn-secondary btn-lg btn-block" (click)="esconder=!esconder" *ngIf="esconder==false && HtmlEditor.controls['texto'].value!=''">Mostrar Mensagem</button>
+<button class="btn btn-secondary btn-lg btn-block" (click)="esconder=!esconder" *ngIf="esconder==true && HtmlEditor.controls['texto'].value!=undefined">Esconder Mensagem</button>
+<button class="btn btn-secondary btn-lg btn-block" (click)="esconder=!esconder" *ngIf="esconder==false && HtmlEditor.controls['texto'].value!=''">Mostrar Mensagem</button>
 <br><br><br>
 <div [innerHtml]="HtmlEditor.controls['texto'].value | safeHtml" *ngIf="HtmlEditor.controls['texto'].value!=undefined && HtmlEditor.controls['texto'].value!='' && esconder!=false"></div>
-

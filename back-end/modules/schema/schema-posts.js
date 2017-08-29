@@ -6,5 +6,6 @@ module.exports = PostsSchema = new mg.Schema({
     imagen: { type: String },
     texto: String,
     autor: String,
+    dev: {type:Boolean},
     criada_em: created_at
 })

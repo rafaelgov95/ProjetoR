@@ -17,13 +17,9 @@ export class PostsComponent implements OnInit {
   LOGO
 
   constructor(private router: ActivatedRoute, private route: Router, private servicoPost: ServicePost) {
-    this.post = new Post('', '', '', '', '', new Date);
- 
-  }
-  ngOnChanges(changes: any) {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
-    console.log(caches)
+    this.post = this.post = new Post('', '', '', '', '', true, new Date());
+
+
   }
   ngOnInit() {
 
@@ -32,7 +28,6 @@ export class PostsComponent implements OnInit {
     }, err => console.log("erro"))
 
     this.subpost = this.servicoPost.getPost(this.id).subscribe(data => {
-      console.log(data)
       this.post = data
       this.LOGO = {
         'background': 'url(' + this.post.imagen + ')  ',
@@ -42,7 +37,6 @@ export class PostsComponent implements OnInit {
         'background-repeat': 'no-repeat',
         'background-size': 'cover'
       }
-      console.log(this.post)
     }
       , err => { console.log('erro') })
   }
