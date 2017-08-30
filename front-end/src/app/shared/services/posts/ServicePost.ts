@@ -31,18 +31,21 @@ export class ServicePost {
   }
 
   getAll(): Observable<Post[]> {
+    this.params = new URLSearchParams();
     this.params.set('dev', 'false');
     let options = new RequestOptions({ headers: this.headers, params: this.params });
     return this.http.get(this.Url + 'api/posts/listar', options)
       .map((response: Response) => response.json());
   }
   getPosts(nome: string): Observable<Post[]> {
+    this.params = new URLSearchParams();
     this.params.set('autor', nome);
     let options = new RequestOptions({ headers: this.headers, params: this.params });
     return this.http.get(this.Url + 'api/posts/listar')
       .map((response: Response) => response.json());
   }
   getPost(id: string): Observable<Post> {
+    this.params = new URLSearchParams();
     this.params.set('_id', id);
     let options = new RequestOptions({ headers: this.headers, params: this.params });
     return this.http.get(this.Url + 'api/posts/buscar', options)
@@ -50,6 +53,7 @@ export class ServicePost {
   }
 
   updatePost(body: Post): Observable<Comment[]> {
+    this.params = new URLSearchParams();
     this.params.set('_id', body._id);
     let bodyString = JSON.stringify(body); // Stringify payload
     let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
@@ -66,6 +70,7 @@ export class ServicePost {
   }
 
   remove(post: Post): Observable<Post> {
+    this.params = new URLSearchParams();
     this.params.set('_id', post._id);
     let options = new RequestOptions({ headers: this.headers, params: this.params });
     return this.http

@@ -33,6 +33,7 @@ module.exports = (Schema, Banco) => {
         },
         Actions.remove = (req, res) => {
             const body = req.query
+            console.log(body);
             model.remove(body, (err, data) => {
                 callback(err, data, res)
             });
