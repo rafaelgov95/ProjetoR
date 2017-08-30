@@ -25,9 +25,7 @@ app.use(function (req, res, next) {
 const login = require('./routes/crud-login/api')('schema-login', 'login')
 const posts = require('./routes/crud-post/api')('schema-posts', 'posts')
 const valida_login = require('./routes/new-login')
-const index = require('./routes/index')
 
-app.use('/', index)
 app.use('/api/login', login)
 app.use('/api/autentica', valida_login) // autentica
 app.use('/api/posts', posts) // postagens do blog
