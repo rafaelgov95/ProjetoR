@@ -27,7 +27,8 @@ export class DashboardComponent implements OnInit {
   editar = false;
   Posts: any;
   editarPost: Post
-
+  destroyToast : Subscription
+  
 
   inscricao: Subscription;
   constructor(private dialogsService: DialogsService, private servicePost: ServicePost, private router: Router, public toastr: ToastsManager, vcr: ViewContainerRef) {

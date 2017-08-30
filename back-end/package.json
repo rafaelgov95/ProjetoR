@@ -2,7 +2,7 @@
   "name": "servidor",
   "version": "0.0.0",
   "private": true,
-  "scripts": {  
+  "scripts": {
     "start": "forever start -c nodemon ./bin/www"
   },
   "dependencies": {

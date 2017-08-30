@@ -22,7 +22,7 @@ export class HtmleditorComponent implements OnInit {
   editar = false;
   @Output() AvisaPai = new EventEmitter();
   @Input() editarPost;
-
+ destroyBuild : Subscription;
   entries = [];
   selectedEntry: { [key: string]: any } = {
     value: null,
