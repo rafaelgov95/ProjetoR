@@ -20,7 +20,6 @@ export class ServicePost {
   constructor(private http: Http) {
 
     console.log("Servico de Posts")
-    this.params = new URLSearchParams();
     this.headers = new Headers({
       'Content-Type': 'application/json'
     });
@@ -40,8 +39,9 @@ export class ServicePost {
   getPosts(nome: string): Observable<Post[]> {
     this.params = new URLSearchParams();
     this.params.set('autor', nome);
+    console.log(this.params)
     let options = new RequestOptions({ headers: this.headers, params: this.params });
-    return this.http.get(this.Url + 'api/posts/listar')
+    return this.http.get(this.Url + 'api/posts/listar',options)
       .map((response: Response) => response.json());
   }
   getPost(id: string): Observable<Post> {
