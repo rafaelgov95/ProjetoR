@@ -10,7 +10,7 @@
             <span class="meta">Postado por
                 <a href="#">{{post.autor}}</a>
                 em {{post.criada_em | date:'medium'}} <a style="text-decoration: none" *ngIf="post.criada_em==null && post.dev==true"> Desenvolvimento.</a></span>
-            <span class="meta2" *ngIf="post.atualizado!=null">Atualizada por
+            <span class="meta2" *ngIf="post.atualizado!=null">Atualizado por
                   <a href="#">{{post.autor}}</a> 
                  {{post.atualizado | date}}</span>
 
