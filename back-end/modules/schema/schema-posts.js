@@ -7,5 +7,6 @@ module.exports = PostsSchema = new mg.Schema({
     texto: String,
     autor: String,
     dev: {type:Boolean},
-    criada_em: created_at
+    criada_em: created_at,
+    atualizado: Date 
 })
