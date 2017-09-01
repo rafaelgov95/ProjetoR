@@ -90,7 +90,7 @@ export class DashboardComponent implements OnInit {
   @ViewChild(MdPaginator) paginator: MdPaginator;
 
   ngOnInit() {
-    this.inscricao = this.servicePost.getPosts(this.autor).subscribe(data => this.Posts = data, erro => console.log('Erro'));
+    this.inscricao = this.servicePost.getPosts(this.autor).subscribe(data => this.Posts = data.reverse(), erro => console.log('Erro'));
     this.servicePost.emitterDelivery.subscribe((post: any) => {
       let pos = this.Posts.indexOf(this.Posts.find(item => item._id === post._id));
       if (pos > -1) {
@@ -99,7 +99,7 @@ export class DashboardComponent implements OnInit {
         this.editar = false;
       } else {
         this.AdicionadoShowSuccess();
-        this.Posts.push(post);
+        this.Posts.unshift(post);
       }
 
     })

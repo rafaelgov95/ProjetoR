@@ -22,19 +22,18 @@ export class HtmleditorComponent implements OnInit {
   editar = false;
   @Output() AvisaPai = new EventEmitter();
   @Input() editarPost;
- destroyBuild : Subscription;
+  destroyBuild: Subscription;
   entries = [];
   selectedEntry: { [key: string]: any } = {
     value: null,
     description: null
   };
   constructor(private fb: FormBuilder, private servicePost: ServicePost) {
-    // this.toastr.setRootViewContainerRef(vcr);
     if (localStorage.getItem('currentUser')) {
       this.autor = JSON.parse(localStorage.getItem('currentUser'))['nome']
     }
 
-    this.post = new Post('', '', '', '', this.autor, true, new Date());
+    this.post = new Post('', '', '', '', this.autor, true);
     this.entries = [
       {
         description: 'Desenvolvimento',
@@ -58,7 +57,7 @@ export class HtmleditorComponent implements OnInit {
 
   cancelar() {
     this.editar = false;
-    this.post = new Post('', '', '', '', this.autor, true, new Date());
+    this.post = new Post('', '', '', '', this.autor, true);
     this.HtmlEditor.reset();
     this.buildForm();
     this.AvisaPai.emit()
@@ -67,12 +66,21 @@ export class HtmleditorComponent implements OnInit {
 
   onSubmit(post: Post) {
     if (this.editar) {
+      if (post.dev == false) {
+
+        post.atualizado = new Date();
+      }
       post._id = this.post._id;
       this.desativa = this.servicePost.updatePost(post).subscribe(data => {
         this.servicePost.emitterDelivery.emit(post)
       }, err => console.log("Erro"))
 
     } else {
+      if (post.dev == false) {
+
+        post.criada_em = new Date();
+      }
+
       this.servicePost.create(post).subscribe(data => {
         this.servicePost.emitterDelivery.emit(data)
       },
@@ -80,7 +88,7 @@ export class HtmleditorComponent implements OnInit {
 
     }
     this.HtmlEditor.reset()
-    this.post = new Post('', '', '', '', this.autor, true, new Date());
+    this.post = new Post('', '', '', '', this.autor, true);
     this.buildForm();
     this.editar = false;
   }
@@ -97,7 +105,7 @@ export class HtmleditorComponent implements OnInit {
     this.HtmlEditor = this.fb.group({
       'titulo': [this.post.titulo, [Validators.required, Validators.minLength, Validators.maxLength]],
       'resumo': [this.post.resumo, [Validators.required, Validators.minLength, Validators.maxLength]],
-      'imagen': [this.post.imagen, [Validators.required, Validators.minLength]],
+      'imagen': [this.post.imagen],
       'texto': [this.post.texto, [Validators.required, Validators.minLength]],
       'dev': [this.post.dev, [Validators.required]],
       'autor': [this.post.autor, [Validators.required]],
@@ -131,7 +139,6 @@ export class HtmleditorComponent implements OnInit {
   formErrors = {
     'titulo': '',
     'resumo': '',
-    'imagen': '',
     'texto': ''
   };
 
@@ -150,9 +157,6 @@ export class HtmleditorComponent implements OnInit {
     'texto': {
       'required': 'Texto Requerido',
       'minlength': 'Texto tem que possuir mais de 120 caracteres'
-    },
-    'imagen': {
-      'required': 'Imagen Requerido'
     }
   };
 

@@ -12,7 +12,7 @@
           </h3>
         </a>
         <p class="post-meta">Postado por
-          <a href="#">{{post.autor}}</a> em {{post.criada_em | date:'medium' }} </p>
+          <a href="#">{{post.autor}}</a> em {{post.criada_em | date:'medium' }}<a style="text-decoration: none" *ngIf="post.criada_em==null"> Desenvolvimento.</a> </p>
         <div *ngIf="adicionarPost == false">
           <button class="btn btn-danger" [disabled]="editar" (click)="openDialogRemove(post)"><span class="glyphicon glyphicon-remove"></span></button>
           <button class="btn btn-warning" (click)="Editar(post)"><span class="glyphicon glyphicon-edit"></span></button>

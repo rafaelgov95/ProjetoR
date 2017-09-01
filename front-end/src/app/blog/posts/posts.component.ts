@@ -17,7 +17,7 @@ export class PostsComponent implements OnInit {
   LOGO
 
   constructor(private router: ActivatedRoute, private route: Router, private servicoPost: ServicePost) {
-    this.post = this.post = new Post('', '', '', '', '', true, new Date());
+    this.post = this.post = new Post('', '', '', '', '', true);
 
 
   }

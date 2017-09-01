@@ -25,7 +25,7 @@ export class BlogComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.inscricao = this.servicePost.getAll().subscribe(data => this.Posts = data, erro => console.log('Erro'));
+    this.inscricao = this.servicePost.getAll().subscribe(data => {this.Posts = data.reverse()}, erro => console.log('Erro'));
   }
   ngOnDestroy() {
     this.inscricao.unsubscribe();

@@ -9,7 +9,11 @@
             <h2 class="subheading">{{post.resumo}}</h2>
             <span class="meta">Postado por
                 <a href="#">{{post.autor}}</a>
-                em {{post.criada_em | date:'medium'}}</span>
+                em {{post.criada_em | date:'medium'}} <a style="text-decoration: none" *ngIf="post.criada_em==null"> Desenvolvimento.</a></span>
+            <span class="meta2" *ngIf="post.atualizado!=null">Atualizada por
+                  <a href="#">{{post.autor}}</a> 
+                 {{post.atualizado | date}}</span>
+
           </div>
         </div>
       </div>

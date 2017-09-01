@@ -199,6 +199,13 @@ header.masthead {
     font-weight: 300;
     font-style: italic;
     font-family: 'Lora', 'Times New Roman', serif; }
+    header.masthead .post-heading .meta2 {
+      font-size: 15px;
+      font-weight: 300;
+      font-style: italic;
+      font-family: 'Lora', 'Times New Roman', serif; }
+      header.masthead .post-heading .meta2 a {
+        color: white; }
     header.masthead .post-heading .meta a {
       color: white; }
   @media only screen and (min-width: 768px) {
