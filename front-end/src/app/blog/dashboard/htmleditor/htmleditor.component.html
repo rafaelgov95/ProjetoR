@@ -35,7 +35,7 @@
 
         <hr>
     </div>
-    <ckeditor [formControl]="HtmlEditor.controls['texto']" debounce="1500" [config]="{height:'800px'}"required> </ckeditor>
+    <ckeditor [formControl]="HtmlEditor.controls['texto']" debounce="1500" [config]="{height:'800px',extraPlugins: 'divarea'}"required> </ckeditor>
     <button [disabled]="!HtmlEditor.valid" type="submit" class="btn btn-warning btn-lg btn-block" *ngIf="editar==true">Update Mensagem</button>
     <button [disabled]="!HtmlEditor.valid" type="submit" class="btn btn-success btn-lg btn-block" *ngIf="editar==false">Enviar Mensagem</button>
 </form>
