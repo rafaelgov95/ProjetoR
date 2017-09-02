@@ -6,8 +6,8 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 @Injectable()
 export class LoginService {
-    // Url:string='http://localhost:3000/';
-    Url:string='/';
+    Url:string='http://localhost:3000/';
+    // Url:string='/';
     
     headers = new Headers();
     constructor(private http: Http) {
