@@ -154,9 +154,6 @@ header.masthead {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover; }
-  header.masthead .post-heading{
-  margin-left: 15%;
-  }
   header.masthead .page-heading,
   header.masthead .post-heading,
   header.masthead .site-heading {
@@ -361,12 +358,17 @@ footer {
   border: 1px solid #0085A1;
   background-color: #0085A1; }
 
-  img {
-    width: 100%;
-  }
-  @media (min-width: 40em) {
-    /* Probably some parent element that limits the img width */
-    main {
-      width: 80%;
-    }
-  }
+
+
+// div  {
+//     width: 100%;
+// //     // height: 400px;
+// //     // background-image: url('img_flowers.jpg');
+// //     // background-repeat: no-repeat;
+// //     // background-size: contain;
+// //     // border: 1px solid red;
+// }
+// img {
+//   width: 100%;
+//   // height: auto;
+// }
